@@ -61,6 +61,8 @@ Algorithmia.client("simNv7chjBG6IS1nPZ9ocby/kEw1")
       },
 
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         legend: {
           display: false
         },
