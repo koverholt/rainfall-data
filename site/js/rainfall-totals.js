@@ -1,19 +1,21 @@
 var input = {"site": 2959};
-Algorithmia.client("simNv7chjBG6IS1nPZ9ocby/kEw1")
-  .algo("koverholt/RainfallData/1.0.0?timeout=300")
-  .pipe(input)
-  .then(function(output) {
-    var obj = JSON.parse(output.result)
-    var previous_1_hour = obj["Previous 1 hour"]
-    var previous_3_hours = obj["Previous 3 hours"]
-    var previous_6_hours = obj["Previous 6 hours"]
-    var previous_24_hours = obj["Previous 24 hours"]
-    var since_midnight = obj["Since midnight"]
-    var one_day_ago = obj["1 day ago"]
-    var two_days_ago = obj["2 days ago"]
-    var three_days_ago = obj["3 days ago"]
-    var four_days_ago = obj["4 days ago"]
-    var five_day_total = obj["5 day total"]
+
+var request = new XMLHttpRequest()
+request.open('POST', 'https://us-central1-koverholt-apps-304316.cloudfunctions.net/rainfall-data', true);
+request.send(input);
+
+request.onload = function () {
+  var data = JSON.parse(this.response)
+  var previous_1_hour = data["Previous 1 hour"]
+  var previous_3_hours = data["Previous 3 hours"]
+  var previous_6_hours = data["Previous 6 hours"]
+  var previous_24_hours = data["Previous 24 hours"]
+  var since_midnight = data["Since midnight"]
+  var one_day_ago = data["1 day ago"]
+  var two_days_ago = data["2 days ago"]
+  var three_days_ago = data["3 days ago"]
+  var four_days_ago = data["4 days ago"]
+  var five_day_total = data["5 day total"]
 
   var app = new Vue({
     el: '#app',
@@ -89,4 +91,4 @@ Algorithmia.client("simNv7chjBG6IS1nPZ9ocby/kEw1")
 
   Chart.defaults.global.defaultFontSize = 13;
 
-  })
+}
