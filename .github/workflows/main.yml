@@ -14,4 +14,4 @@ jobs:
           credentials: ${{ secrets.GCP_SA_KEY }}
           memory_mb: 128
           region: us-central1
-          source_dir: /src/
+          # source_dir: /src/
