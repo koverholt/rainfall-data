@@ -1,4 +1,4 @@
-var input = {"site": 2959};
+var input = JSON.stringify({"site": 2959});
 
 var xhr = new XMLHttpRequest();
 xhr.open("POST", "https://us-central1-koverholt-apps-304316.cloudfunctions.net/rainfall-data");
