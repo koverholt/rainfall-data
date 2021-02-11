@@ -84,11 +84,22 @@ def apply(request):
         `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
     """
 
+    if request.method == 'OPTIONS':
+        headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Max-Age': '3600'
+        }
+        return ('', 204, headers)
+
     headers = {
+        'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET'
+        'Access-Control-Allow-Methods': 'GET, POST'
     }
 
-    site = request.args.get("site", 2959)
+    request_json = request.get_json(silent=True)
+    site = request_json.get("site", 2959)
     result = get_rainfall_totals(site)
     return (result.to_json(orient="records", lines=True), 200, headers)
