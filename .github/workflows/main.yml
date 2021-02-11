@@ -1,8 +1,10 @@
+on:
+  push:
+    branches: [ main ]
+
 jobs:
   deploy:
     steps:
-      - name: Cloud Functions Deploy
-        uses: google-github-actions/deploy-cloud-functions@v0.1.2
       - id: deploy
         uses: google-github-actions/deploy-cloud-functions@main
         with:
