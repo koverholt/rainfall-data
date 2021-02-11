@@ -11,7 +11,11 @@ jobs:
         with:
           name: rainfall-data-2
           runtime: python38
+          entry_point: apply
           credentials: ${{ secrets.GCP_SA_KEY }}
           memory_mb: 128
           region: us-central1
           # source_dir: /src/
+
+      - name: display
+        run: echo "Cloud Functions Endpoint - ${{ steps.deploy-cloud-functions.outputs.url }}"
