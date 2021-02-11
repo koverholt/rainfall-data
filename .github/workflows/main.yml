@@ -13,5 +13,5 @@ jobs:
           runtime: python38
           credentials: ${{ secrets.GCP_SA_KEY }}
           memory_mb: 128
-          region: us-central-1
+          region: us-central1
           source_dir: src/
