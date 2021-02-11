@@ -101,5 +101,6 @@ def apply(request):
 
     request_json = request.get_json(silent=True)
     site = request_json.get("site", 2959)
-    result = get_rainfall_totals(site)
-    return (result.to_json(orient="records", lines=True), 200, headers)
+    rainfall_totals = get_rainfall_totals(site)
+    result = rainfall_totals.to_json(orient="records", lines=True)
+    return (result, 200, headers)
