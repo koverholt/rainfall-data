@@ -12,9 +12,9 @@ def get_rainfall_totals(site):
     df.columns = (
         df.columns.str.strip()
         .str.lower()
-        .str.replace(" ", "_")
-        .str.replace("(", "")
-        .str.replace(")", "")
+        .str.replace(" ", "_", regex=False)
+        .str.replace("(", "", regex=False)
+        .str.replace(")", "", regex=False)
     )
 
     df.columns = [
@@ -104,3 +104,5 @@ def apply(request):
     rainfall_totals = get_rainfall_totals(site)
     result = rainfall_totals.to_json(orient="records", lines=True)
     return (result, 200, headers)
+
+get_rainfall_totals("2959")
