@@ -5,7 +5,7 @@ xhr.open("POST", "https://us-central1-koverholt-apps-304316.cloudfunctions.net/r
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.send(input);
 
-request.onload = function () {
+xhr.onload = function () {
   var data = JSON.parse(this.response)
   var previous_1_hour = data["Previous 1 hour"]
   var previous_3_hours = data["Previous 3 hours"]
