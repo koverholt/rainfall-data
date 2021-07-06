@@ -22,6 +22,8 @@ xhr.onload = function () {
     el: '#app',
     data: {
       five_day_total: five_day_total,
+      one_day_ago: one_day_ago,
+      since_midnight: since_midnight,
     }
   })
 

@@ -23,6 +23,40 @@
               Shows the most recent rainfall totals from the "Marble Falls 4 WSW" rainfall gauge site.
               Data from <a href="https://hydromet.lcra.org/">LCRA Hydromet</a>.
             </p>
+            <div class="spinner-border m-5" role="status" v-if="false">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="row" v-cloak-hide>
+              <div class="container">
+                <div class="row">
+                  <div class="col text-center text-white bg-primary rounded m-1 p-3">
+                    <h5>
+                      {{ since_midnight }} in
+                    </h5>
+                    <p>
+                      Rainfall since midnight
+                    </p>
+                  </div>
+                  <div class="col text-center text-white bg-primary rounded m-1 p-3">
+                    <h5>
+                      {{ one_day_ago }} in
+                    </h5>
+                    <p>
+                      Rainfall yesterday
+                    </p>
+                  </div>
+                  <div class="col text-center text-white bg-primary rounded m-1 p-3">
+                    <h5>
+                      {{ five_day_total }} in
+                    </h5>
+                    <p>
+                      Rainfall last 5 days
+                    </p>
+                    <div class="icon d-none d-sm-block"><i class="fas fa-wind"></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <br>
             <div class="alert alert-warning text-center" role="alert" class="mx-auto" v-if="five_day_total === 0" v-cloak-hide>
               No rainfall in the past five days 😭
