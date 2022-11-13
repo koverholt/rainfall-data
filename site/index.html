@@ -20,7 +20,12 @@
             <h1 class="mt-5">Central Texas Rainfall Totals</h1>
             <br>
             <p class="lead">
-              Shows the most recent rainfall totals from the "Marble Falls 4 WSW" rainfall gauge site.
+              Shows the most recent rainfall totals from the
+                <select name="sitelist" id="sitelist">
+                  <option value="{{ site }}" selected>{{ location }}</option>
+                  <option v-for="item in list_of_sites" :value="item.site">{{ item.location }}</option>
+                </select>
+              rainfall gauge site.
               Data from <a href="https://hydromet.lcra.org/">LCRA Hydromet</a>.
             </p>
             <div class="spinner-border m-5" role="status" v-if="false">

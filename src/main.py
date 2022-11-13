@@ -38,12 +38,12 @@ def get_rainfall_totals(site):
         "five_day_report_date",
     ]
 
+    df_sites = df[["site", "location"]].copy()
+
     df = df[df["site"] == site]
 
     df = df.drop(
         [
-            "site",
-            "location",
             "date_time",
             "one_day_report_date",
             "basin",
@@ -72,7 +72,7 @@ def get_rainfall_totals(site):
             },
             ignore_index=True,
         )
-    return df
+    return df, df_sites
 
 def apply(request):
     """Responds to any HTTP request.
@@ -102,5 +102,10 @@ def apply(request):
     request_json = request.get_json(silent=True)
     site = request_json.get("site", 2959)
     rainfall_totals = get_rainfall_totals(site)
-    result = rainfall_totals.to_json(orient="records", lines=True)
+    rainfall_amounts = rainfall_totals[0].to_json(orient="records", lines=True)
+    list_of_sites = rainfall_totals[1].to_json(orient="records")
+    result = {
+        "rainfall_amounts": rainfall_amounts,
+        "list_of_sites": list_of_sites
+    }
     return (result, 200, headers)

@@ -1,5 +1,23 @@
-var input = {"site": 2959};
+/*
+ URL parameters
+*/
 
+var param = new Vue({
+  created()
+  {
+    let uri = window.location.search.substring(1);
+    let params = new URLSearchParams(uri);
+    window.value = params.get("site");
+  },
+});
+
+/*
+ Query
+*/
+
+var input_site = window.value || 2959
+var input = {"site": input_site};
+console.log(input)
 var xhr = new XMLHttpRequest();
 xhr.open("POST", "https://us-central1-koverholt-apps-304316.cloudfunctions.net/rainfall-data");
 xhr.setRequestHeader("Content-Type", "application/json");
@@ -7,23 +25,33 @@ xhr.send(JSON.stringify(input));
 
 xhr.onload = function () {
   var data = JSON.parse(this.response)
-  var previous_1_hour = data["Previous 1 hour"]
-  var previous_3_hours = data["Previous 3 hours"]
-  var previous_6_hours = data["Previous 6 hours"]
-  var previous_24_hours = data["Previous 24 hours"]
-  var since_midnight = data["Since midnight"]
-  var one_day_ago = data["1 day ago"]
-  var two_days_ago = data["2 days ago"]
-  var three_days_ago = data["3 days ago"]
-  var four_days_ago = data["4 days ago"]
-  var five_day_total = data["5 day total"]
+  var rainfall_amounts = JSON.parse(data.rainfall_amounts)
+  var list_of_sites = JSON.parse(data.list_of_sites)
+  console.log(rainfall_amounts)
+  var site = rainfall_amounts["site"]
+  var location = rainfall_amounts["location"]
+  console.log(site)
+  console.log(location)
+  var previous_1_hour = rainfall_amounts["Previous 1 hour"]
+  var previous_3_hours = rainfall_amounts["Previous 3 hours"]
+  var previous_6_hours = rainfall_amounts["Previous 6 hours"]
+  var previous_24_hours = rainfall_amounts["Previous 24 hours"]
+  var since_midnight = rainfall_amounts["Since midnight"]
+  var one_day_ago = rainfall_amounts["1 day ago"]
+  var two_days_ago = rainfall_amounts["2 days ago"]
+  var three_days_ago = rainfall_amounts["3 days ago"]
+  var four_days_ago = rainfall_amounts["4 days ago"]
+  var five_day_total = rainfall_amounts["5 day total"]
 
   var app = new Vue({
     el: '#app',
     data: {
+      site: site,
+      location: location,
       five_day_total: five_day_total,
       one_day_ago: one_day_ago,
       since_midnight: since_midnight,
+      list_of_sites: list_of_sites
     }
   })
 
@@ -93,5 +121,13 @@ xhr.onload = function () {
   });
 
   Chart.defaults.global.defaultFontSize = 13;
+
+  // Trigger a change when a different site is selected
+  $("#sitelist").change(function(){
+    var selected_site = parseInt($('#sitelist').find(":selected").val());
+    console.log(selected_site)
+    new_url = "https://rainfall.koverholt.com/?site=" + selected_site;
+    window.location.href = new_url;
+    });
 
 }
