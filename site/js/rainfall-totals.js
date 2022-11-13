@@ -16,8 +16,7 @@ var param = new Vue({
 */
 
 var input_site = window.value || 2959
-var input = {"site": input_site};
-console.log(input)
+var input = {"site": parseInt(input_site)};
 var xhr = new XMLHttpRequest();
 xhr.open("POST", "https://us-central1-koverholt-apps-304316.cloudfunctions.net/rainfall-data");
 xhr.setRequestHeader("Content-Type", "application/json");
@@ -27,11 +26,8 @@ xhr.onload = function () {
   var data = JSON.parse(this.response)
   var rainfall_amounts = JSON.parse(data.rainfall_amounts)
   var list_of_sites = JSON.parse(data.list_of_sites)
-  console.log(rainfall_amounts)
   var site = rainfall_amounts["site"]
   var location = rainfall_amounts["location"]
-  console.log(site)
-  console.log(location)
   var previous_1_hour = rainfall_amounts["Previous 1 hour"]
   var previous_3_hours = rainfall_amounts["Previous 3 hours"]
   var previous_6_hours = rainfall_amounts["Previous 6 hours"]
@@ -125,7 +121,6 @@ xhr.onload = function () {
   // Trigger a change when a different site is selected
   $("#sitelist").change(function(){
     var selected_site = parseInt($('#sitelist').find(":selected").val());
-    console.log(selected_site)
     new_url = "https://rainfall.koverholt.com/?site=" + selected_site;
     window.location.href = new_url;
     });
