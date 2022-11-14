@@ -6,8 +6,20 @@ def get_rainfall_totals(site):
 
     rainfall_one_day = pd.read_csv("https://hydromet.lcra.org/media/Rainfall.csv")
     rainfall_five_day = pd.read_csv("https://hydromet.lcra.org/media/Rain5Day.csv")
+    rainfall_month_year = pd.read_csv("https://hydromet.lcra.org/media/RainMonthYear.csv")
+
+    rainfall_month_year.columns = [
+        "Site",
+        "Location",
+        "DateTime",
+        "Rainfall30Days",
+        "RainfallMonth",
+        "RainfallYear",
+        "RainfallPrevYear",
+    ]
 
     df = pd.merge(rainfall_one_day, rainfall_five_day)
+    df = pd.merge(df, rainfall_month_year)
 
     df.columns = (
         df.columns.str.strip()
@@ -36,6 +48,11 @@ def get_rainfall_totals(site):
         "4 days ago",
         "5 day total",
         "five_day_report_date",
+        "datetime",
+        "30 day total",
+        "This month",
+        "This year",
+        "Last year",
     ]
 
     df_sites = df[["site", "location"]].copy()
@@ -50,6 +67,7 @@ def get_rainfall_totals(site):
             "today",
             "last24",
             "five_day_report_date",
+            "datetime",
         ],
         axis=1,
     )
@@ -69,6 +87,10 @@ def get_rainfall_totals(site):
                 "3 days ago": 0,
                 "4 days ago": 0,
                 "5 day total": 0,
+                "30 day total": 0,
+                "This month": 0,
+                "This year": 0,
+                "Last year": 0,
             },
             ignore_index=True,
         )
