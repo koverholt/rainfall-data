@@ -51,6 +51,7 @@ xhr.onload = function () {
       five_day_total: five_day_total,
       one_day_ago: one_day_ago,
       since_midnight: since_midnight,
+      thirty_day_total: thirty_day_total,
       this_month: this_month,
       this_year: this_year,
       last_year: last_year,
@@ -58,8 +59,8 @@ xhr.onload = function () {
     }
   })
 
-  var xValue = ["Previous 1 hour", "Previous 3 hours", "Previous 6 hours", "Previous 24 hours", "Since midnight", "1 day ago", "2 days ago", "3 days ago", "4 days ago", "5 day total", "30 day total"]
-  var yValue = [previous_1_hour, previous_3_hours, previous_6_hours, previous_24_hours, since_midnight, one_day_ago, two_days_ago, three_days_ago, four_days_ago, five_day_total, thirty_day_total]
+  var xValue = ["Previous 1 hour", "Previous 3 hours", "Previous 6 hours", "Previous 24 hours", "Since midnight", "1 day ago", "2 days ago", "3 days ago", "4 days ago", "5 day total"]
+  var yValue = [previous_1_hour, previous_3_hours, previous_6_hours, previous_24_hours, since_midnight, one_day_ago, two_days_ago, three_days_ago, four_days_ago, five_day_total]
   var maxYValue = Math.max(...yValue)
 
   var ctx = document.getElementById('myChart').getContext('2d');
@@ -76,8 +77,7 @@ xhr.onload = function () {
               "2 days ago",
               "3 days ago",
               "4 days ago",
-              "5 day total",
-              "30 day total"
+              "5 day total"
           ],
           datasets: [{
               label: 'Rainfall Amount',
@@ -92,8 +92,7 @@ xhr.onload = function () {
                   two_days_ago,
                   three_days_ago,
                   four_days_ago,
-                  five_day_total,
-                  thirty_day_total
+                  five_day_total
               ]
           }]
       },
