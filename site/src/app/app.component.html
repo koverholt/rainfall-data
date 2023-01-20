@@ -6,7 +6,7 @@
           <h1 class="mt-5">Central Texas Rainfall Totals</h1>
           <br>
           <p class="lead">
-            Shows recent rainfall totals from the&nbsp;
+            Shows recent rainfall totals from the
             <select name="sitelist" id="sitelist">
               <option [value]="site" selected>{{ location }}</option>
               <option *ngFor="let item of list_of_sites" [value]="item.site">{{ item.location }}</option>
