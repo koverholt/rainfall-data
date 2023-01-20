@@ -6,12 +6,12 @@
           <h1 class="mt-5">Central Texas Rainfall Totals</h1>
           <br>
           <p class="lead">
-            Shows recent rainfall totals from the
+            Shows recent rainfall totals from the&nbsp;
             <select name="sitelist" id="sitelist">
               <option [value]="site" selected>{{ location }}</option>
               <option *ngFor="let item of list_of_sites" [value]="item.site">{{ item.location }}</option>
             </select>
-            <a href="https://hydromet.lcra.org/"> LCRA Hydromet</a> rainfall gauge site
+            &nbsp;<a href="https://hydromet.lcra.org/">LCRA Hydromet</a> rainfall gauge site
           </p>
           <div class="row">
             <div class="container">
