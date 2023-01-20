@@ -1,0 +1,9 @@
+.chart-container {
+    margin: auto;
+    height: 50vh;
+    width: 55vw
+}
+
+#sitelist {
+    width: 200px;
+}
