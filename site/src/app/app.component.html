@@ -1,98 +1,96 @@
-<body>
-  <div id="app">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h1 class="mt-5">Central Texas Rainfall Totals</h1>
-          <br>
-          <p class="lead">
-            Shows recent rainfall totals from the
-            <select name="sitelist" id="sitelist">
-              <option [value]="site" selected>{{ location }}</option>
-              <option *ngFor="let item of list_of_sites" [value]="item.site">{{ item.location }}</option>
-            </select>
-            &nbsp;<a href="https://hydromet.lcra.org/">LCRA Hydromet</a> rainfall gauge site
-          </p>
-          <div class="row">
-            <div class="container">
-              <div class="row">
-                <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                  <h5>
-                    {{ since_midnight }} in
-                  </h5>
-                  <p>
-                    Since midnight
-                  </p>
-                </div>
-                <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                  <h5>
-                    {{ one_day_ago }} in
-                  </h5>
-                  <p>
-                    Yesterday
-                  </p>
-                </div>
-                <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                  <h5>
-                    {{ five_day_total }} in
-                  </h5>
-                  <p>
-                    Last 5 days
-                  </p>
-                </div>
-                <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                  <h5>
-                    {{ thirty_day_total }} in
-                  </h5>
-                  <p>
-                    Last 30 days
-                  </p>
-                  <div class="icon d-none d-sm-block"><i class="fas fa-wind"></i></div>
-                </div>
+<div id="app">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Central Texas Rainfall Totals</h1>
+        <br>
+        <p class="lead">
+          Shows recent rainfall totals from the
+          <select name="sitelist" id="sitelist">
+            <option [value]="site" selected>{{ location }}</option>
+            <option *ngFor="let item of list_of_sites" [value]="item.site">{{ item.location }}</option>
+          </select>
+          &nbsp;<a href="https://hydromet.lcra.org/">LCRA Hydromet</a> rainfall gauge site
+        </p>
+        <div class="row">
+          <div class="container">
+            <div class="row">
+              <div class="col text-center text-white bg-primary rounded m-1 p-2">
+                <h5>
+                  {{ since_midnight }} in
+                </h5>
+                <p>
+                  Since midnight
+                </p>
+              </div>
+              <div class="col text-center text-white bg-primary rounded m-1 p-2">
+                <h5>
+                  {{ one_day_ago }} in
+                </h5>
+                <p>
+                  Yesterday
+                </p>
+              </div>
+              <div class="col text-center text-white bg-primary rounded m-1 p-2">
+                <h5>
+                  {{ five_day_total }} in
+                </h5>
+                <p>
+                  Last 5 days
+                </p>
+              </div>
+              <div class="col text-center text-white bg-primary rounded m-1 p-2">
+                <h5>
+                  {{ thirty_day_total }} in
+                </h5>
+                <p>
+                  Last 30 days
+                </p>
+                <div class="icon d-none d-sm-block"><i class="fas fa-wind"></i></div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="container">
-              <div class="row">
-                <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                  <h5>
-                    {{ this_month }} in
-                  </h5>
-                  <p>
-                    This month
-                  </p>
-                </div>
-                <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                  <h5>
-                    {{ this_year }} in
-                  </h5>
-                  <p>
-                    This year
-                  </p>
-                </div>
-                <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                  <h5>
-                    {{ last_year }} in
-                  </h5>
-                  <p>
-                    Last year
-                  </p>
-                  <div class="icon d-none d-sm-block"><i class="fas fa-wind"></i></div>
-                </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <div class="row">
+              <div class="col text-center text-white bg-primary rounded m-1 p-2">
+                <h5>
+                  {{ this_month }} in
+                </h5>
+                <p>
+                  This month
+                </p>
+              </div>
+              <div class="col text-center text-white bg-primary rounded m-1 p-2">
+                <h5>
+                  {{ this_year }} in
+                </h5>
+                <p>
+                  This year
+                </p>
+              </div>
+              <div class="col text-center text-white bg-primary rounded m-1 p-2">
+                <h5>
+                  {{ last_year }} in
+                </h5>
+                <p>
+                  Last year
+                </p>
+                <div class="icon d-none d-sm-block"><i class="fas fa-wind"></i></div>
               </div>
             </div>
           </div>
-          <br>
-          <div class="alert alert-warning text-center" role="alert" class="mx-auto" *ngIf="five_day_total == 0">
-            No rainfall in the past five days 😭
-          </div>
-          <br>
-          <div class="chart-container">
-            <canvas id="myChart"></canvas>
-          </div>
+        </div>
+        <br>
+        <div class="alert alert-warning text-center" role="alert" class="mx-auto" *ngIf="five_day_total == 0">
+          No rainfall in the past five days 😭
+        </div>
+        <br>
+        <div class="chart-container">
+          <canvas id="myChart"></canvas>
         </div>
       </div>
     </div>
   </div>
-</body>
+</div>
