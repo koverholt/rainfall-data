@@ -38,9 +38,7 @@ export class AppComponent {
 
     // Query
 
-    console.log(input_site)
     var input = { "site": input_site };
-    console.log(input)
     var xhr = new XMLHttpRequest();
     var self = this;
     xhr.open("POST", "https://us-central1-koverholt-apps-304316.cloudfunctions.net/rainfall-data");
