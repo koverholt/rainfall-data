@@ -4,7 +4,7 @@
       <div class="col-lg-12 text-center">
         <h1 class="mt-5">Central Texas Rainfall Totals</h1>
         <br>
-        <p class="lead">
+        <p class="lead" *ngIf="location">
           Shows recent rainfall totals from the
           <select name="sitelist" id="sitelist">
             <option [value]="site" selected>{{ location }}</option>
@@ -12,7 +12,10 @@
           </select>
           &nbsp;<a href="https://hydromet.lcra.org/">LCRA Hydromet</a> rainfall gauge site
         </p>
-        <div class="row">
+        <div class="spinner-border m-5" role="status" *ngIf="!location">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="row" *ngIf="location">
           <div class="container">
             <div class="row">
               <div class="col text-center text-white bg-primary rounded m-1 p-2">
@@ -51,7 +54,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="location">
           <div class="container">
             <div class="row">
               <div class="col text-center text-white bg-primary rounded m-1 p-2">
@@ -83,7 +86,7 @@
           </div>
         </div>
         <br>
-        <div class="alert alert-warning text-center" role="alert" class="mx-auto" *ngIf="five_day_total == 0">
+        <div class="alert alert-warning text-center" role="alert" class="mx-auto" *ngIf="five_day_total == 0 && location">
           No rainfall in the past five days 😭
         </div>
         <br>
