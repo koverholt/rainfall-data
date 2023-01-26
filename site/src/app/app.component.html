@@ -1,9 +1,9 @@
 <section class="hero is-link is-small">
   <div class="hero-body">
-    <p class="title">
+    <p class="title is-size-4-mobile">
       Central Texas Rainfall Totals
     </p>
-    <p class="subtitle" *ngIf="location">
+    <p class="subtitle is-size-6-mobile" *ngIf="location">
       Showing recent rainfall totals from the
       <select name="sitelist" id="sitelist" (change)="changeSite()">
         <option [value]="site" selected>{{ location }}</option>
