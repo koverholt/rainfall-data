@@ -4,12 +4,12 @@
       Central Texas Rainfall Totals
     </p>
     <p class="subtitle is-size-6-mobile" *ngIf="location">
-      Showing recent rainfall totals from the
+      Show rainfall from the&nbsp;
       <select name="sitelist" id="sitelist" (change)="changeSite()">
         <option [value]="site" selected>{{ location }}</option>
         <option *ngFor="let item of list_of_sites" [value]="item.site">{{ item.location }}</option>
       </select>
-      &nbsp;<a href="https://hydromet.lcra.org/">LCRA Hydromet</a> rainfall gauge site
+      &nbsp;<a href="https://hydromet.lcra.org/">LCRA Hydromet</a> weather gauge
     </p>
     <p class="subtitle" *ngIf="!location">
       &nbsp;
