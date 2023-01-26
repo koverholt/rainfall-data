@@ -21,7 +21,7 @@
   <progress class="progress is-medium is-link" max="100"></progress>
 </div>
 
-<div class="columns mt-2" *ngIf="location">
+<div class="columns mt-2 is-mobile" *ngIf="location">
   <div class="column">
     <div class="card has-background-link-light">
       <div class="card-content">
@@ -58,6 +58,9 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="columns is-mobile" *ngIf="location">
   <div class="column">
     <div class="card has-background-link-light">
       <div class="card-content">
@@ -66,21 +69,6 @@
         </p>
         <p class="subtitle is-6 is-size-7-mobile has-text-centered">
           Last 30 days
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="columns" *ngIf="location">
-  <div class="column">
-    <div class="card has-background-link-light">
-      <div class="card-content">
-        <p class="title is-4 is-size-6-mobile has-text-centered">
-          {{ this_month }} in
-        </p>
-        <p class="subtitle is-6 is-size-7-mobile has-text-centered">
-          This month
         </p>
       </div>
     </div>
