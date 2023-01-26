@@ -1,99 +1,120 @@
-<div id="app">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h1 class="mt-5">Central Texas Rainfall Totals</h1>
-        <br>
-        <p class="lead" *ngIf="location">
-          Shows recent rainfall totals from the
-          <select name="sitelist" id="sitelist">
-            <option [value]="site" selected>{{ location }}</option>
-            <option *ngFor="let item of list_of_sites" [value]="item.site">{{ item.location }}</option>
-          </select>
-          &nbsp;<a href="https://hydromet.lcra.org/">LCRA Hydromet</a> rainfall gauge site
+<section class="hero is-link is-small">
+  <div class="hero-body">
+    <p class="title">
+      Central Texas Rainfall Totals
+    </p>
+    <p class="subtitle" *ngIf="location">
+      Showing recent rainfall totals from the
+      <select name="sitelist" id="sitelist" (change)="changeSite()">
+        <option [value]="site" selected>{{ location }}</option>
+        <option *ngFor="let item of list_of_sites" [value]="item.site">{{ item.location }}</option>
+      </select>
+      &nbsp;<a href="https://hydromet.lcra.org/">LCRA Hydromet</a> rainfall gauge site
+    </p>
+    <p class="subtitle" *ngIf="!location">
+      &nbsp;
+    </p>
+  </div>
+</section>
+
+<div *ngIf="!location">
+  <progress class="progress is-medium is-link" max="100"></progress>
+</div>
+
+<div class="columns mt-2" *ngIf="location">
+  <div class="column">
+    <div class="card has-background-link-light">
+      <div class="card-content">
+        <p class="title is-4 has-text-centered">
+          {{ since_midnight }} in
         </p>
-        <div class="spinner-border m-5" role="status" *ngIf="!location">
-          <span class="sr-only">Loading...</span>
-        </div>
-        <div class="row" *ngIf="location">
-          <div class="container">
-            <div class="row">
-              <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                <h5>
-                  {{ since_midnight }} in
-                </h5>
-                <p>
-                  Since midnight
-                </p>
-              </div>
-              <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                <h5>
-                  {{ one_day_ago }} in
-                </h5>
-                <p>
-                  Yesterday
-                </p>
-              </div>
-              <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                <h5>
-                  {{ five_day_total }} in
-                </h5>
-                <p>
-                  Last 5 days
-                </p>
-              </div>
-              <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                <h5>
-                  {{ thirty_day_total }} in
-                </h5>
-                <p>
-                  Last 30 days
-                </p>
-                <div class="icon d-none d-sm-block"><i class="fas fa-wind"></i></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row" *ngIf="location">
-          <div class="container">
-            <div class="row">
-              <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                <h5>
-                  {{ this_month }} in
-                </h5>
-                <p>
-                  This month
-                </p>
-              </div>
-              <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                <h5>
-                  {{ this_year }} in
-                </h5>
-                <p>
-                  This year
-                </p>
-              </div>
-              <div class="col text-center text-white bg-primary rounded m-1 p-2">
-                <h5>
-                  {{ last_year }} in
-                </h5>
-                <p>
-                  Last year
-                </p>
-                <div class="icon d-none d-sm-block"><i class="fas fa-wind"></i></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="alert alert-warning text-center" role="alert" class="mx-auto" *ngIf="five_day_total == 0 && location">
-          No rainfall in the past five days 😭
-        </div>
-        <br>
-        <div class="chart-container">
-          <canvas id="myChart"></canvas>
-        </div>
+        <p class="subtitle is-6 has-text-centered">
+          Since midnight
+        </p>
       </div>
     </div>
   </div>
+  <div class="column">
+    <div class="card has-background-link-light">
+      <div class="card-content">
+        <p class="title is-4 has-text-centered">
+          {{ one_day_ago }} in
+        </p>
+        <p class="subtitle is-6 has-text-centered">
+          Yesterday
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card has-background-link-light">
+      <div class="card-content">
+        <p class="title is-4 has-text-centered">
+          {{ five_day_total }} in
+        </p>
+        <p class="subtitle is-6 has-text-centered">
+          Last 5 days
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card has-background-link-light">
+      <div class="card-content">
+        <p class="title is-4 has-text-centered">
+          {{ thirty_day_total }} in
+        </p>
+        <p class="subtitle is-6 has-text-centered">
+          Last 30 days
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="columns" *ngIf="location">
+  <div class="column">
+    <div class="card has-background-link-light">
+      <div class="card-content">
+        <p class="title is-4 has-text-centered">
+          {{ this_month }} in
+        </p>
+        <p class="subtitle is-6 has-text-centered">
+          This month
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card has-background-link-light">
+      <div class="card-content">
+        <p class="title is-4 has-text-centered">
+          {{ this_year }} in
+        </p>
+        <p class="subtitle is-6 has-text-centered">
+          This year
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card has-background-link-light">
+      <div class="card-content">
+        <p class="title is-4 has-text-centered">
+          {{ last_year }} in
+        </p>
+        <p class="subtitle is-6 has-text-centered">
+          Last year
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="notification is-warning has-text-centered mt-4" *ngIf="five_day_total == 0 && location">
+  No rainfall in the past five days 😭
+</div>
+
+<div class="chart-container">
+  <canvas id="myChart"></canvas>
 </div>

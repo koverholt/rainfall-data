@@ -28,6 +28,13 @@ export class AppComponent {
   this_year: any;
   last_year: any;
 
+  // Trigger a change when a different site is selected
+  changeSite() {
+    var selected_site = Number($('#sitelist').find(":selected").val());
+    var new_url = "https://rainfall.koverholt.com/?site=" + selected_site;
+    window.location.href = new_url;
+  };
+
   constructor() {
 
     // URL parameters
@@ -89,7 +96,7 @@ export class AppComponent {
           ],
           datasets: [{
             label: 'Rainfall Amount',
-            backgroundColor: 'rgb(3, 87, 255)',
+            backgroundColor: 'rgb(50, 115, 220)',
             borderColor: 'rgb(3, 87, 255)',
             data: [
               self.previous_1_hour,
@@ -132,14 +139,6 @@ export class AppComponent {
       });
 
       Chart.defaults.global.defaultFontSize = 13;
-
-      // Trigger a change when a different site is selected
-      $("#sitelist").change(function () {
-        var selected_site = Number($('#sitelist').find(":selected").val());
-        var new_url = "https://rainfall.koverholt.com/?site=" + selected_site;
-        window.location.href = new_url;
-      });
-
     }
   }
 }
