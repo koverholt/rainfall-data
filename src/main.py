@@ -127,7 +127,11 @@ def apply(request):
     rainfall_amounts = rainfall_totals[0].to_json(orient="records", lines=True)
     list_of_sites = rainfall_totals[1].to_json(orient="records")
 
-    site_rainfall_24_hours = float(rainfall_totals[0]["Previous 24 hours"].iloc[0])
+    site_rainfall_24_hours = round(float(rainfall_totals[0]["Previous 24 hours"].iloc[0]), 1)
+    site_rainfall_30_days = round(float(rainfall_totals[0]["30 day total"].iloc[0]), 1)
+    site_rainfall_this_year = round(float(rainfall_totals[0]["This year"].iloc[0]), 1)
+    site_rainfall_last_year = round(float(rainfall_totals[0]["Last year"].iloc[0]), 1)
+    site_rainfall_year_over_year = round((site_rainfall_this_year / site_rainfall_last_year) * 100)
     site_location = rainfall_totals[0]["location"].iloc[0].rsplit(' ', 2)[0]
 
     result = {
@@ -135,6 +139,10 @@ def apply(request):
         "list_of_sites": list_of_sites,
         "sessionInfo": { "parameters": {
             "rainfall-24-hours": site_rainfall_24_hours,
+            "rainfall-30-days": site_rainfall_30_days,
+            "rainfall-this-year": site_rainfall_this_year,
+            "rainfall-last-year": site_rainfall_last_year,
+            "rainfall-year-over-year": site_rainfall_year_over_year,
             "location": site_location
             }
         }
