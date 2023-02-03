@@ -126,8 +126,17 @@ def apply(request):
     rainfall_totals = get_rainfall_totals(site)
     rainfall_amounts = rainfall_totals[0].to_json(orient="records", lines=True)
     list_of_sites = rainfall_totals[1].to_json(orient="records")
+
+    site_rainfall_24_hours = float(rainfall_totals[0]["Previous 24 hours"].iloc[0])
+    site_location = rainfall_totals[0]["location"].iloc[0]
+
     result = {
         "rainfall_amounts": rainfall_amounts,
-        "list_of_sites": list_of_sites
+        "list_of_sites": list_of_sites,
+        "sessionInfo": { "parameters": {
+            "rainfall-24-hours": site_rainfall_24_hours,
+            "location": site_location
+            }
+        }
     }
     return (result, 200, headers)
