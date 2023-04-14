@@ -38,13 +38,11 @@ export class AppComponent {
   constructor() {
 
     // URL parameters
-
     let uri = window.location.search.substring(1);
     let params = new URLSearchParams(uri);
     var input_site = Number(params.get("site")) || 2959
 
-    // Query
-
+    // Request
     var input = { "site": input_site };
     var xhr = new XMLHttpRequest();
     var self = this;
@@ -54,8 +52,8 @@ export class AppComponent {
 
     xhr.onload = function () {
       var data = JSON.parse(this.response)
-      self.rainfall_amounts = JSON.parse(data.rainfall_amounts)
-      self.list_of_sites = JSON.parse(data.list_of_sites)
+      self.rainfall_amounts = data.rainfall_amounts[0]
+      self.list_of_sites = data.list_of_sites
       self.site = self.rainfall_amounts["site"]
       self.location = self.rainfall_amounts["location"]
       self.previous_1_hour = self.rainfall_amounts["Previous 1 hour"]

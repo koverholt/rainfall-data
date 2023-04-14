@@ -38,37 +38,10 @@
     <div class="card has-background-link-light">
       <div class="card-content">
         <p class="title is-4 is-size-6-mobile has-text-centered">
-          {{ one_day_ago }} in
-        </p>
-        <p class="subtitle is-6 is-size-7-mobile has-text-centered">
-          Yesterday
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="column">
-    <div class="card has-background-link-light">
-      <div class="card-content">
-        <p class="title is-4 is-size-6-mobile has-text-centered">
           {{ five_day_total }} in
         </p>
         <p class="subtitle is-6 is-size-7-mobile has-text-centered">
           Last 5 days
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="columns is-mobile" *ngIf="location">
-  <div class="column">
-    <div class="card has-background-link-light">
-      <div class="card-content">
-        <p class="title is-4 is-size-6-mobile has-text-centered">
-          {{ thirty_day_total }} in
-        </p>
-        <p class="subtitle is-6 is-size-7-mobile has-text-centered">
-          Last 30 days
         </p>
       </div>
     </div>
@@ -81,6 +54,33 @@
         </p>
         <p class="subtitle is-6 is-size-7-mobile has-text-centered">
           This year
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="columns is-mobile" *ngIf="location">
+  <div class="column">
+    <div class="card has-background-link-light">
+      <div class="card-content">
+        <p class="title is-4 is-size-6-mobile has-text-centered">
+          {{ one_day_ago }} in
+        </p>
+        <p class="subtitle is-6 is-size-7-mobile has-text-centered">
+          Yesterday
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card has-background-link-light">
+      <div class="card-content">
+        <p class="title is-4 is-size-6-mobile has-text-centered">
+          {{ thirty_day_total }} in
+        </p>
+        <p class="subtitle is-6 is-size-7-mobile has-text-centered">
+          Last 30 days
         </p>
       </div>
     </div>
