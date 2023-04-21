@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import Chart from 'chart.js';
 
 @Component({
@@ -27,12 +27,11 @@ export class AppComponent {
   this_month: any;
   this_year: any;
   last_year: any;
+  selected_site: any;
 
   // Trigger a change when a different site is selected
   changeSite() {
-    var selected_site = Number($('#sitelist').find(":selected").val());
-    var new_url = "https://rainfall.koverholt.com/?site=" + selected_site;
-    window.location.href = new_url;
+    window.location.href = "https://rainfall.koverholt.com/?site=" + this.selected_site;;
   };
 
   constructor() {

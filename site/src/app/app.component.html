@@ -5,10 +5,10 @@
     </p>
     <p class="subtitle is-size-6-mobile" *ngIf="location">
       Show rainfall from the&nbsp;
-      <select name="sitelist" id="sitelist" (change)="changeSite()">
-        <option [value]="site" selected>{{ location }}</option>
-        <option *ngFor="let item of list_of_sites" [value]="item.site">{{ item.location }}</option>
-      </select>
+      <input type="text" placeholder="{{ location }}" list="sitelist" [(ngModel)]="selected_site" (change)="changeSite()" />
+        <datalist id="sitelist" name="sitelist">
+          <option *ngFor="let item of list_of_sites" [value]="item.site" [label]="item.location"></option>
+        </datalist>
       &nbsp;<a href="https://hydromet.lcra.org/">LCRA Hydromet</a> weather gauge
     </p>
     <p class="subtitle" *ngIf="!location">
