@@ -45,7 +45,7 @@ export class AppComponent {
     var input = { "site": input_site };
     var xhr = new XMLHttpRequest();
     var self = this;
-    xhr.open("POST", "https://us-central1-koverholt-apps-304316.cloudfunctions.net/rainfall-data");
+    xhr.open("POST", "https://rainfall-data-67ugd5bjtq-uc.a.run.app");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(input));
 
