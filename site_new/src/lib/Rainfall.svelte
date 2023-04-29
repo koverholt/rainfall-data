@@ -5,6 +5,8 @@
   Chart.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
   var data = {};
+  var site = "";
+  var location = "";
   var lastOneHour = 0;
   var lastThreeHours = 0;
   var lastSixHours = 0;
@@ -16,9 +18,9 @@
   var fourDaysAgo = 0;
   var fiveDayTotal = 0;
   var thirtyDayTotal = 0;
+  var thisMonth = 0;
   var thisYear = 0;
   var lastYear = 0;
-  var location = "";
 
   let options = {
     responsive: true,
@@ -49,10 +51,12 @@
     });
 
     const res = await response.json();
-    lastOneHour = res.rainfall_amounts[0]["Last 1 hour"]
-    lastThreeHours = res.rainfall_amounts[0]["Last 3 hours"]
-    lastSixHours = res.rainfall_amounts[0]["Last 6 hours"]
-    lastTwentyFourHours = res.rainfall_amounts[0]["Last 24 hours"]
+    site = res.rainfall_amounts[0]["site"]
+    location = res.rainfall_amounts[0]["location"]
+    lastOneHour = res.rainfall_amounts[0]["Previous 1 hour"]
+    lastThreeHours = res.rainfall_amounts[0]["Previous 3 hours"]
+    lastSixHours = res.rainfall_amounts[0]["Previous 6 hours"]
+    lastTwentyFourHours = res.rainfall_amounts[0]["Previous 24 hours"]
     sinceMidnight = res.rainfall_amounts[0]["Since midnight"]
     oneDayAgo = res.rainfall_amounts[0]["1 day ago"]
     twoDaysAgo = res.rainfall_amounts[0]["2 days ago"]
@@ -60,9 +64,9 @@
     fourDaysAgo = res.rainfall_amounts[0]["4 days ago"]
     fiveDayTotal = res.rainfall_amounts[0]["5 day total"]
     thirtyDayTotal = res.rainfall_amounts[0]["30 day total"]
+    thisMonth = res.rainfall_amounts[0]["This month"]
     thisYear = res.rainfall_amounts[0]["This year"]
     lastYear = res.rainfall_amounts[0]["Last year"]
-    location = res.rainfall_amounts[0]["location"]
 
     data = {
       labels: ["Last 1 hour", "Last 3 hours", "Last 6 hours", "Last 24 hours", "Since midnight", "1 day ago", "2 days ago", "3 days ago", "4 days ago", "5 day total"],
@@ -84,6 +88,7 @@
 				<section>
           <div class="pb-4 -mb-2 bg-sky-900 rounded-2xl p-6">
             <h2 class="text-4xl font-bold text-gray-50 pb-3">Central Texas Rainfall Totals</h2>
+            <!-- TODO: Add autocomplete/combobox to search for and select a measurement site) -->
             <span class="block mb-2 text-small font-medium tracking-widest text-sky-300">Showing rainfall from the {location} <a href="https://hydromet.lcra.org/">LCRA Hydromet</a> weather gauge</span>
           </div>
 					<div class="grid gap-6 my-6 lg:grid-cols-3 lg:text-center">
@@ -138,6 +143,7 @@
 							</p>
 						</div>
 					</div>
+          <!-- TODO: Add banner when there is no data (i.e., no recent rainfall) -->
           <div class="pb-4 bg-sky-100 rounded-2xl p-6 flex grow-1" style="margin: auto; height: 35vh">
             <Bar data={data} options={options} />
           </div>
