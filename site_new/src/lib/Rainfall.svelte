@@ -5,7 +5,6 @@
   Chart.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
   var data = {};
-  var options = {};
   var lastOneHour = 0;
   var lastThreeHours = 0;
   var lastSixHours = 0;
@@ -20,6 +19,27 @@
   var thisYear = 0;
   var lastYear = 0;
   var location = "";
+
+  let options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    scales: {
+      y: {
+        ticks: {
+          suggestedMin: 0
+        },
+        title: {
+          display: true,
+            text: "Rainfall Amount (in)"
+        }
+      }
+    }
+  }
 
   onMount(async () => {
     const response = await fetch("https://rainfall-data-67ugd5bjtq-uc.a.run.app", {
@@ -53,27 +73,6 @@
           color: "#0ea5e9",
           data: [lastOneHour, lastThreeHours, lastSixHours, lastTwentyFourHours, sinceMidnight, oneDayAgo, twoDaysAgo, threeDaysAgo, fourDaysAgo, fiveDayTotal]
       }],
-    }
-
-    let options = {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        y: {
-            ticks: {
-              suggestedMin: 0
-            },
-            title: {
-              display: true,
-              text: "Rainfall Amount (in)"
-            }
-          }
-      }
     }
   })
 </script>
