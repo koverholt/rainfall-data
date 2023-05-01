@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { Bar } from 'svelte-chartjs'
+  import Card from '@smui/card';
   import { Chart, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
 
   Chart.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
