@@ -60,11 +60,11 @@ def get_rainfall_totals(site):
     ]
 
     df_sites = df[["site", "location"]].copy()
-
     df = df[df["site"] == site]
 
     # Additional calculated values
     df["Site name"] = df["location"].iloc[0].rsplit(" ", 2)[0]
+    df["This month"] = df["This month"].fillna(0)
     df["Year over year"] = round((df["This year"] / df["Last year"]) * 100)
 
     df = df.drop(
@@ -81,9 +81,7 @@ def get_rainfall_totals(site):
     )
 
     # Payload if data is empty
-    no_data = False
     if df.empty:
-        no_data = True
         df = df.append(
             {
                 "Previous 1 hour": 0,
