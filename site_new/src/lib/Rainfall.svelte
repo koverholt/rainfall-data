@@ -1,7 +1,8 @@
 <script>
   import { onMount } from 'svelte';
   import { Bar } from 'svelte-chartjs'
-  import {Chart, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale} from 'chart.js';
+  import { Chart, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
+
   Chart.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
   var data = {};
@@ -81,74 +82,25 @@
   })
 </script>
 
-<div class="min-h-screen pt-5 bg-gray-800 text-gray-100">
-	<div>
-		<main>
-			<div class="container mx-auto space-y-16">
-				<section>
-          <div class="pb-4 -mb-2 bg-sky-900 rounded-2xl p-6">
-            <h2 class="text-4xl font-bold text-gray-50 pb-3">Central Texas Rainfall Totals</h2>
-            <!-- TODO: Add autocomplete/combobox to search for and select a measurement site) -->
-            <span class="block mb-2 text-small font-medium tracking-widest text-sky-300">Showing rainfall from the {location} <a href="https://hydromet.lcra.org/">LCRA Hydromet</a> weather gauge</span>
-          </div>
-					<div class="grid gap-6 my-6 lg:grid-cols-3 lg:text-center">
-						<div class="flex flex-col p-6 -mb-2 space-y-4 rounded-2xl bg-gray-900">
-							<div class="flex items-center justify-center m-auto flex-shrink-0 w-48 h-12 text-xl font-bold rounded-full bg-sky-300 text-gray-900">
-                {sinceMidnight} in
-              </div>
-							<p class="text-xl font-semibold">
-							  Since midnight
-							</p>
-						</div>
-						<div class="flex flex-col p-6 -mb-2 space-y-4 rounded-2xl bg-gray-900">
-							<div class="flex items-center justify-center m-auto flex-shrink-0 w-48 h-12 text-xl font-bold rounded-full bg-sky-300 text-gray-900">
-                {fiveDayTotal} in
-              </div>
-							<p class="text-xl font-semibold">
-							  Last 5 days
-							</p>
-						</div>
-						<div class="flex flex-col p-6 -mb-2 space-y-4 rounded-2xl bg-gray-900">
-							<div class="flex items-center justify-center m-auto flex-shrink-0 w-48 h-12 text-xl font-bold rounded-full bg-sky-300 text-gray-900">
-                {thisYear} in
-              </div>
-							<p class="text-xl font-semibold">
-								This year
-							</p>
-						</div>
-					</div>
-          <div class="grid gap-6 my-6 lg:grid-cols-3 lg:text-center">
-						<div class="flex flex-col p-6  space-y-4 rounded-2xl bg-gray-900">
-							<div class="flex items-center justify-center m-auto flex-shrink-0 w-48 h-12 text-xl font-bold rounded-full bg-sky-300 text-gray-900">
-                {oneDayAgo} in
-              </div>
-							<p class="text-xl font-semibold">
-							  Yesterday
-							</p>
-						</div>
-						<div class="flex flex-col p-6  space-y-4 rounded-2xl bg-gray-900">
-							<div class="flex items-center justify-center m-auto flex-shrink-0 w-48 h-12 text-xl font-bold rounded-full bg-sky-300 text-gray-900">
-                {thirtyDayTotal} in
-              </div>
-							<p class="text-xl font-semibold">
-							  Last 30 days
-							</p>
-						</div>
-						<div class="flex flex-col p-6  space-y-4 rounded-2xl bg-gray-900">
-							<div class="flex items-center justify-center m-auto flex-shrink-0 w-48 h-12 text-xl font-bold rounded-full bg-sky-300 text-gray-900">
-                {lastYear} in
-              </div>
-							<p class="text-xl font-semibold">
-								Last year
-							</p>
-						</div>
-					</div>
-          <!-- TODO: Add banner when there is no data (i.e., no recent rainfall) -->
-          <div class="pb-4 bg-sky-100 rounded-2xl p-6 flex grow-1" style="margin: auto; height: 35vh">
-            <Bar data={data} options={options} />
-          </div>
-				</section>
-			</div>
-		</main>
-	</div>
-</div>
+Central Texas Rainfall Totals
+Showing rainfall from the Marble Falls 4 WSW LCRA Hydromet weather gauge
+
+{sinceMidnight} in
+Today
+
+{fiveDayTotal} in
+Last 5 days
+
+{thisYear} in
+This year
+
+{oneDayAgo} in
+Yesterday
+
+{thirtyDayTotal} in
+Last 30 days
+
+{lastYear} in
+Last year
+
+<Bar data={data} options={options} />
