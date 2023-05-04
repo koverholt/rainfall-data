@@ -63,8 +63,8 @@
       );
 
       const res = await response.json();
-      site = res.rainfall_amounts[0]["site"];
       listOfSites = res.list_of_sites;
+      site = res.rainfall_amounts[0]["site"];
       location = res.rainfall_amounts[0]["location"];
       lastOneHour = res.rainfall_amounts[0]["Previous 1 hour"];
       lastThreeHours = res.rainfall_amounts[0]["Previous 3 hours"];
@@ -80,7 +80,6 @@
       thisMonth = res.rainfall_amounts[0]["This month"];
       thisYear = res.rainfall_amounts[0]["This year"];
       lastYear = res.rainfall_amounts[0]["Last year"];
-      console.log(listOfSites)
 
       data = {
         labels: [
