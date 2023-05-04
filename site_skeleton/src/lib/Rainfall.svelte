@@ -1,10 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { Bar } from "svelte-chartjs";
-    import { Autocomplete } from '@skeletonlabs/skeleton';
-    import type { AutocompleteOption } from '@skeletonlabs/skeleton';
-    import { popup } from '@skeletonlabs/skeleton';
-    import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { Chart, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from "chart.js";
 
     Chart.register(

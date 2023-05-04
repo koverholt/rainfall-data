@@ -39,7 +39,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@floating-ui/dom": "^1.2.7",
 		"chart.js": "^4.3.0",
 		"svelte-chartjs": "^3.1.2"
 	}
