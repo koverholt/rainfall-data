@@ -17,6 +17,9 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'react-chartjs-2';
 
 ChartJS.register( CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend );
+ChartJS.defaults.backgroundColor = '#9BD0F5';
+ChartJS.defaults.borderColor = '#36A2EB';
+ChartJS.defaults.color = '#FFFFFF';
 
 const options : any = {
   responsive: true,
@@ -81,8 +84,8 @@ function RainfallContent() {
       {
         label: "Rainfall Amount",
         backgroundColor: "#0ea5e9",
-        borderColor: "#0ea5e9",
-        color: "#0ea5e9",
+        borderColor: "#222222",
+        color: "#222222",
         data: [
           data ? data["rainfall_amounts"][0]["Last 1 hour"] : 0,
           data ? data["rainfall_amounts"][0]["Last 3 hours"] : 0,
@@ -111,7 +114,7 @@ function RainfallContent() {
           sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
         >
           <Toolbar sx={{ flexWrap: 'wrap' }}>
-            <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+            <Typography variant="h5" color="inherit" noWrap sx={{ flexGrow: 1 }}>
               Central Texas Rainfall Totals
             </Typography>
           </Toolbar>
@@ -274,7 +277,7 @@ function RainfallContent() {
               </Grid>
           </Grid>
         </Container>
-        <Container sx={{ height: '250px', width: '800px', justifyContent: 'center' }}>
+        <Container sx={{ height: '35vh', width: '100vw', justifyContent: 'center' }}>
           <Bar options={options} data={chartData} />
         </Container>
       </React.Fragment>
