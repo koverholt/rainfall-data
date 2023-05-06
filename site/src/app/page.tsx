@@ -14,6 +14,7 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import Link from '@mui/material/Link';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
@@ -155,7 +156,7 @@ function RainfallContent() {
         </Grid>
           <Grid item>
             <Typography variant="h6" align="left" color="text.secondary" component="p">
-              <a href="https://hydromet.lcra.org">LCRA Hydromet</a> weather gauge
+            <Link href="https://hydromet.lcra.org" color="inherit" underline="hover">LCRA Hydromet</Link> weather gauge
             </Typography>
           </Grid>
         </Grid>
