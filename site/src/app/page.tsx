@@ -155,7 +155,7 @@ function RainfallContent() {
         </Grid>
           <Grid item>
             <Typography variant="h6" align="left" color="text.secondary" component="p">
-              LCRA Hydromet weather gauge
+              <a href="https://hydromet.lcra.org">LCRA Hydromet</a> weather gauge
             </Typography>
           </Grid>
         </Grid>
