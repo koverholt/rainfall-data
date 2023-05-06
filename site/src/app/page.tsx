@@ -32,7 +32,7 @@ const darkTheme = createTheme({
 });
 
 function RainfallContent() {
-  const [data, setData] = React.useState([] as any);
+  const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
     fetch(
