@@ -128,7 +128,7 @@ function RainfallContent() {
           sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
         >
           <Toolbar sx={{ flexWrap: 'wrap' }}>
-            <Typography variant="h5" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+            <Typography variant="h5" color="inherit" noWrap sx={{ flexGrow: 1, fontWeight: 'bold' }}>
               Central Texas Rainfall Totals
             </Typography>
           </Toolbar>
