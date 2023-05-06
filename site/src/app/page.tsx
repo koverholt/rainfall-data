@@ -12,6 +12,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
@@ -20,27 +22,6 @@ ChartJS.register( CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend
 ChartJS.defaults.backgroundColor = '#9BD0F5';
 ChartJS.defaults.borderColor = '#36A2EB';
 ChartJS.defaults.color = '#FFFFFF';
-
-const options : any = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-  scales: {
-    y: {
-      ticks: {
-        suggestedMin: 0,
-      },
-      title: {
-        display: true,
-        text: "Rainfall Amount (in)",
-      },
-    },
-  },
-};
 
 var chartData : any = {};
 
@@ -102,6 +83,29 @@ function RainfallContent() {
     ],
   };
 
+  const options : any = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      y: {
+        ticks: {
+          suggestedMin: 0,
+        },
+        title: {
+          display: true,
+          text: "Rainfall Amount (in)",
+        },
+      },
+    },
+  };
+
+  const listOfSites = data ? data["list_of_sites"] : [];
+
   return (
     <ThemeProvider theme={darkTheme}>
       <React.Fragment>
@@ -119,13 +123,30 @@ function RainfallContent() {
             </Typography>
           </Toolbar>
         </AppBar>
-        {/* Hero unit */}
-        <Container disableGutters maxWidth="lg" component="main" sx={{ pt: 3, pb: 3 }}>
+
+        <Grid container spacing={3} sx={{ p:4 }} alignItems="center">
+        <Grid item>
           <Typography variant="h6" align="left" color="text.secondary" component="p">
-            Showing rainfall from the Marble Falls 4 WSW LCRA Hydromet weather gauge
+            Showing rainfall from the
           </Typography>
-        </Container>
-        {/* End hero unit */}
+        </Grid>
+        <Grid item>
+          <Autocomplete
+            disablePortal
+            size="small"
+            id="combo-box-demo"
+            options={listOfSites}
+            getOptionLabel={(data) => data.location}
+            sx={{ width: 250 }}
+            renderInput={(params) => <TextField {...params} label="Marble Falls 4 WSW" />}
+          />
+        </Grid>
+          <Grid item>
+            <Typography variant="h6" align="left" color="text.secondary" component="p">
+              LCRA Hydromet weather gauge
+            </Typography>
+          </Grid>
+        </Grid>
         <Container maxWidth="lg" component="main">
           <Grid container spacing={5} alignItems="flex-end" sx={{ pb: 4 }}>
               <Grid item xs={12} sm={6} md={4}>
@@ -141,15 +162,12 @@ function RainfallContent() {
                         theme.palette.mode === 'light'
                           ? theme.palette.grey[200]
                           : theme.palette.grey[700],
+                      p: 1,
                     }}
                   />
-                  <CardContent>
-                    <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'baseline'}}>
-                      <Typography component="h5" variant="h6" color="text.primary">
-                        Today
-                      </Typography>
-                    </Box>
-                  </CardContent>
+                  <Typography component="h5" variant="h6" color="text.primary" sx={{ display: 'flex', flexDirection: "column", justifyContent: 'center', alignItems: 'center', p: 1}}>
+                    Today
+                  </Typography>
                 </Card>
               </Grid>
               <Grid item xs={12} sm={6} md={4}>
@@ -165,15 +183,12 @@ function RainfallContent() {
                         theme.palette.mode === 'light'
                           ? theme.palette.grey[200]
                           : theme.palette.grey[700],
+                        p: 1,
                     }}
                   />
-                  <CardContent>
-                    <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'baseline'}}>
-                      <Typography component="h5" variant="h6" color="text.primary">
-                        Last 5 days
-                      </Typography>
-                    </Box>
-                  </CardContent>
+                  <Typography component="h5" variant="h6" color="text.primary" sx={{ display: 'flex', flexDirection: "column", justifyContent: 'center', alignItems: 'center', p: 1}}>
+                    Last 5 days
+                  </Typography>
                 </Card>
               </Grid>
               <Grid item xs={12} sm={6} md={4}>
@@ -189,15 +204,12 @@ function RainfallContent() {
                         theme.palette.mode === 'light'
                           ? theme.palette.grey[200]
                           : theme.palette.grey[700],
+                        p: 1,
                     }}
                   />
-                  <CardContent>
-                    <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'baseline'}}>
-                      <Typography component="h5" variant="h6" color="text.primary">
-                        This year
-                      </Typography>
-                    </Box>
-                  </CardContent>
+                  <Typography component="h5" variant="h6" color="text.primary" sx={{ display: 'flex', flexDirection: "column", justifyContent: 'center', alignItems: 'center', p: 1}}>
+                    This year
+                  </Typography>
                 </Card>
               </Grid>
           </Grid>
@@ -216,15 +228,12 @@ function RainfallContent() {
                         theme.palette.mode === 'light'
                           ? theme.palette.grey[200]
                           : theme.palette.grey[700],
+                        p: 1,
                     }}
                   />
-                  <CardContent>
-                    <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'baseline'}}>
-                      <Typography component="h5" variant="h6" color="text.primary">
-                        Yesterday
-                      </Typography>
-                    </Box>
-                  </CardContent>
+                  <Typography component="h5" variant="h6" color="text.primary" sx={{ display: 'flex', flexDirection: "column", justifyContent: 'center', alignItems: 'center', p: 1}}>
+                    Yesterday
+                  </Typography>
                 </Card>
               </Grid>
               <Grid item xs={12} sm={6} md={4}>
@@ -240,15 +249,12 @@ function RainfallContent() {
                         theme.palette.mode === 'light'
                           ? theme.palette.grey[200]
                           : theme.palette.grey[700],
+                        p: 1,
                     }}
                   />
-                  <CardContent>
-                    <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'baseline'}}>
-                      <Typography component="h5" variant="h6" color="text.primary">
-                        Last 30 days
-                      </Typography>
-                    </Box>
-                  </CardContent>
+                  <Typography component="h5" variant="h6" color="text.primary" sx={{ display: 'flex', flexDirection: "column", justifyContent: 'center', alignItems: 'center', p: 1}}>
+                    Last 30 days
+                  </Typography>
                 </Card>
               </Grid>
               <Grid item xs={12} sm={6} md={4}>
@@ -264,20 +270,17 @@ function RainfallContent() {
                         theme.palette.mode === 'light'
                           ? theme.palette.grey[200]
                           : theme.palette.grey[700],
+                        p: 1,
                     }}
                   />
-                  <CardContent>
-                    <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'baseline'}}>
-                      <Typography component="h5" variant="h6" color="text.primary">
-                        Last year
-                      </Typography>
-                    </Box>
-                  </CardContent>
+                  <Typography component="h5" variant="h6" color="text.primary" sx={{ display: 'flex', flexDirection: "column", justifyContent: 'center', alignItems: 'center', p: 1}}>
+                    Last year
+                  </Typography>
                 </Card>
               </Grid>
           </Grid>
         </Container>
-        <Container sx={{ height: '35vh', width: '100vw', justifyContent: 'center' }}>
+        <Container sx={{ height: '40vh', width: '100vw', justifyContent: 'center' }}>
           <Bar options={options} data={chartData} />
         </Container>
       </React.Fragment>
