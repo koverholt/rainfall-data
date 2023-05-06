@@ -18,7 +18,7 @@ import { Bar } from 'react-chartjs-2';
 
 ChartJS.register( CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend );
 
-export const options = {
+const options : any = {
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
@@ -39,7 +39,7 @@ export const options = {
   },
 };
 
-export var chartData = {};
+var chartData : any = {};
 
 const darkTheme = createTheme({
   palette: {
