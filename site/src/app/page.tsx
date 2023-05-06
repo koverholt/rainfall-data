@@ -32,7 +32,7 @@ const darkTheme = createTheme({
 });
 
 function RainfallContent() {
-  const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState([] as any);
 
   React.useEffect(() => {
     fetch(
@@ -136,7 +136,7 @@ function RainfallContent() {
             size="small"
             id="combo-box-demo"
             options={listOfSites}
-            getOptionLabel={(data) => data.location}
+            getOptionLabel={(data: {location: string}) => data.location}
             sx={{ width: 250 }}
             renderInput={(params) => <TextField {...params} label="Marble Falls 4 WSW" />}
           />
