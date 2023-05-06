@@ -18,13 +18,14 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
+// Chart initialization
 ChartJS.register( CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend );
 ChartJS.defaults.backgroundColor = '#9BD0F5';
 ChartJS.defaults.borderColor = '#36A2EB';
 ChartJS.defaults.color = '#FFFFFF';
-
 var chartData : any = {};
 
+// Dark theme
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -35,12 +36,18 @@ function RainfallContent() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
+    // URL parameters
+    let uri = window.location.search.substring(1);
+    let params = new URLSearchParams(uri);
+    var input_site = Number(params.get("site")) || 2959
+
+    // API request
     fetch(
       'https://rainfall-data-67ugd5bjtq-uc.a.run.app',
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ site: 2959 }),
+        body: JSON.stringify({ site: input_site }),
       }
     )
       .then(response => response.json())
@@ -48,6 +55,11 @@ function RainfallContent() {
       .catch(error => console.error(error));
   }, []);
 
+  const listOfSites = data ? data["list_of_sites"] : [];
+  const [value, setValue] = React.useState<string | null>(listOfSites[0]);
+  const [inputValue, setInputValue] = React.useState('');
+
+  // Chart data
   chartData = {
     labels: [
       "Last 1 hour",
@@ -104,8 +116,6 @@ function RainfallContent() {
     },
   };
 
-  const listOfSites = data ? data["list_of_sites"] : [];
-
   return (
     <ThemeProvider theme={darkTheme}>
       <React.Fragment>
@@ -133,12 +143,14 @@ function RainfallContent() {
         <Grid item>
           <Autocomplete
             disablePortal
+            disableClearable
+            defaultValue={{ location: "Marble Falls 4 WSW" }}
             size="small"
-            id="combo-box-demo"
+            id="sites"
             options={listOfSites}
             getOptionLabel={(data: {location: string}) => data.location}
             sx={{ width: 250 }}
-            renderInput={(params) => <TextField {...params} label="Marble Falls 4 WSW" />}
+            renderInput={(params) => <TextField {...params} />}
           />
         </Grid>
           <Grid item>
