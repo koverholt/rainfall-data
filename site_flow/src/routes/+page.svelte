@@ -1,5 +1,5 @@
 <script>
-    import Rainfall from "$lib/Rainfall.svelte";
+  import Rainfall from "$lib/Rainfall.svelte";
 </script>
 
 <Rainfall />
