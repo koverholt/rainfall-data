@@ -1,11 +1,9 @@
 <script lang="ts">
-  import { Navbar, NavBrand, Card, DarkMode } from "flowbite-svelte";
+  import { Navbar, NavBrand, Card, DarkMode, Alert, Input } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { Bar } from "svelte-chartjs";
   import { page } from "$app/stores";
-  import { Input, Label, Helper } from "flowbite-svelte";
   import { Chart, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from "chart.js";
-  import { list } from "postcss";
 
   Chart.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
@@ -15,6 +13,7 @@
 
   var data = {};
   var site = "";
+  var selected = "";
   var listOfSites: any = [];
   var location = "";
   var lastOneHour = 0;
@@ -134,7 +133,14 @@
   <div class="align-center placement-center flex p-4 text-xl text-sky-800 dark:text-sky-400">
     <div class="m-auto mx-1">Showing rainfall from the</div>
     <div class="m-auto mx-1">
-      <Input type="text" placeholder="Marble Falls 4 WSW" list="sitelist" />
+      <Input
+        type="text"
+        placeholder={location}
+        list="sitelist"
+        bind:value={selected}
+        on:change={() =>
+          (window.location.href = "https://rainfall.koverholt.com/?site=" + selected)}
+      />
       <datalist id="sitelist" name="sitelist">
         {#each listOfSites as site}
           <option value={site.site} label={site.location} />
@@ -198,8 +204,13 @@
     </div>
   </div>
 
-  <!-- TODO: Add banner when all rainfall amounts are zero -->
-  <div class="chart-container pt-6" style="margin: auto; height: 45vh; width: 85vw;}">
-    <Bar {data} {options} />
-  </div>
+  {#if fiveDayTotal == 0 && location}
+    <div class="min-w-full px-20 py-6">
+      <Alert border color="yellow" class="text-xl">No rainfall in the past five days 😭</Alert>
+    </div>
+  {:else}
+    <div class="chart-container pt-6" style="margin: auto; height: 45vh; width: 85vw;}">
+      <Bar {data} {options} />
+    </div>
+  {/if}
 </div>
