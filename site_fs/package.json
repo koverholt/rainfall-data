@@ -7,7 +7,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "fmt": "npx prettier --write ."
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^2.0.0",
@@ -29,8 +30,10 @@
   "type": "module",
   "dependencies": {
     "@popperjs/core": "^2.11.7",
+    "chart.js": "^4.3.0",
     "classnames": "^2.3.2",
     "flowbite": "^1.6.5",
-    "flowbite-svelte": "^0.34.12"
+    "flowbite-svelte": "^0.34.12",
+    "svelte-chartjs": "^3.1.2"
   }
 }
