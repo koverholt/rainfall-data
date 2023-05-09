@@ -129,88 +129,92 @@
   <DarkMode />
 </Navbar>
 
-<div class="container mx-auto">
-  <div class="align-center placement-center flex p-4 text-xl text-sky-800 dark:text-sky-400">
-    <div class="m-auto mx-1">Showing rainfall from the</div>
-    <div class="m-auto mx-1">
-      <Input
-        type="text"
-        placeholder={location}
-        list="sitelist"
-        bind:value={selected}
-        on:change={() =>
-          (window.location.href = "https://rainfall.koverholt.com/?site=" + selected)}
-      />
-      <datalist id="sitelist" name="sitelist">
-        {#each listOfSites as site}
-          <option value={site.site} label={site.location} />
-        {/each}
-      </datalist>
+<main>
+  <div class="container mx-auto">
+    <div class="align-center placement-center flex p-4 text-xl text-sky-800 dark:text-sky-400">
+      <div class="m-auto mx-1">Showing rainfall from the</div>
+      <div class="m-auto mx-1">
+        <Input
+          type="text"
+          placeholder={location}
+          list="sitelist"
+          bind:value={selected}
+          on:change={() =>
+            (window.location.href = "https://rainfall.koverholt.com/?site=" + selected)}
+        />
+        <datalist id="sitelist" name="sitelist">
+          {#each listOfSites as site}
+            <option value={site.site} label={site.location} />
+          {/each}
+        </datalist>
+      </div>
+      <div class="m-auto mx-1">LCRA Hydromet weather gauge</div>
     </div>
-    <div class="m-auto mx-1">LCRA Hydromet weather gauge</div>
-  </div>
 
-  <div class="flex p-2 text-center">
-    <div class="w-0 grow">
-      <Card>
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {sinceMidnight} in
-        </h5>
-        <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Today</p>
-      </Card>
+    <div class="flex p-2 text-center">
+      <div class="w-0 grow">
+        <Card>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {sinceMidnight} in
+          </h5>
+          <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Today</p>
+        </Card>
+      </div>
+      <div class="w-0 grow">
+        <Card>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {fiveDayTotal} in
+          </h5>
+          <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Last 5 days</p>
+        </Card>
+      </div>
+      <div class="w-0 grow">
+        <Card>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {thisYear} in
+          </h5>
+          <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">This year</p>
+        </Card>
+      </div>
     </div>
-    <div class="w-0 grow">
-      <Card>
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {fiveDayTotal} in
-        </h5>
-        <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Last 5 days</p>
-      </Card>
-    </div>
-    <div class="w-0 grow">
-      <Card>
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {thisYear} in
-        </h5>
-        <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">This year</p>
-      </Card>
-    </div>
-  </div>
 
-  <div class="flex p-2 text-center">
-    <div class="w-0 grow">
-      <Card>
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {oneDayAgo} in
-        </h5>
-        <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Yesterday</p>
-      </Card>
+    <div class="flex p-2 text-center">
+      <div class="w-0 grow">
+        <Card>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {oneDayAgo} in
+          </h5>
+          <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Yesterday</p>
+        </Card>
+      </div>
+      <div class="w-0 grow">
+        <Card>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {thirtyDayTotal} in
+          </h5>
+          <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Last 30 days</p>
+        </Card>
+      </div>
+      <div class="w-0 grow">
+        <Card>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {lastYear} in
+          </h5>
+          <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Last year</p>
+        </Card>
+      </div>
     </div>
-    <div class="w-0 grow">
-      <Card>
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {thirtyDayTotal} in
-        </h5>
-        <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Last 30 days</p>
-      </Card>
-    </div>
-    <div class="w-0 grow">
-      <Card>
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {lastYear} in
-        </h5>
-        <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Last year</p>
-      </Card>
-    </div>
-  </div>
 
-  {#if fiveDayTotal == 0 && location}
-    <div class="min-w-full px-20 py-6">
-      <Alert border color="yellow" class="text-xl">No rainfall in the past five days 😭</Alert>
-    </div>
-  {:else}
-    <div class="chart-container pt-6" style="margin: auto; height: 45vh; width: 85vw;}">
-      <Bar {data} {options} />
-    </div>
-  {/if}
-</div>
+    {#if fiveDayTotal == 0 && location}
+      <div class="m-20 min-h-screen min-w-full px-20 py-6">
+        <Alert border color="yellow" class="text-xl">No rainfall in the past five days 😭</Alert>
+      </div>
+    {:else}
+      <div class="mx-auto grid h-[60vh] w-[65vw] grid-cols-1 grid-rows-1 pr-[8vw] pt-10">
+        <div class="chart-container">
+          <Bar {data} {options} />
+        </div>
+      </div>
+    {/if}
+  </div>
+</main>
