@@ -121,7 +121,7 @@
 </script>
 
 <Navbar let:hidden let:toggle color="form">
-  <NavBrand>
+  <NavBrand href="/">
     <span class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
       Central Texas Rainfall Totals
     </span>
