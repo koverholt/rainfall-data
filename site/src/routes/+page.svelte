@@ -1,9 +1,21 @@
 <script lang="ts">
-  import { Navbar, NavBrand, Card, DarkMode, Alert, Input } from "flowbite-svelte";
+  import {
+    Navbar,
+    NavBrand,
+    NavUl,
+    NavLi,
+    Card,
+    DarkMode,
+    Alert,
+    Input,
+    Button,
+    Popover,
+  } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { Bar } from "svelte-chartjs";
   import { page } from "$app/stores";
   import { Chart, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from "chart.js";
+  import { InformationCircle } from "svelte-heros-v2";
 
   Chart.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
@@ -30,6 +42,15 @@
   var thisMonth = 0;
   var thisYear = 0;
   var lastYear = 0;
+  var rainYoY = 0;
+  var rainMoY = 0;
+  var start = new Date();
+  var diff = 0;
+  var oneDay = 0;
+  var currentDay = 0;
+  var currentYear = 0;
+  var numDaysInYear = 0;
+  var percentYearComplete = 0;
 
   let options = {
     responsive: true,
@@ -81,7 +102,18 @@
     thisMonth = res.rainfall_amounts[0]["This month"];
     thisYear = res.rainfall_amounts[0]["This year"];
     lastYear = res.rainfall_amounts[0]["Last year"];
-    console.log(listOfSites);
+
+    var now = new Date();
+    start = new Date(now.getFullYear(), 0, 0);
+    diff = now - start + (start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000;
+    oneDay = 1000 * 60 * 60 * 24;
+    currentDay = Math.floor(diff / oneDay);
+    currentYear = now.getFullYear();
+    numDaysInYear =
+      (currentYear % 4 === 0 && currentYear % 100 > 0) || currentYear % 400 == 0 ? 366 : 365;
+    percentYearComplete = Math.round((currentDay / numDaysInYear) * 100);
+    rainYoY = Math.round((thisYear / lastYear) * 100);
+    rainMoY = Math.round((thisMonth / thisYear) * 100);
 
     data = {
       labels: [
@@ -126,7 +158,31 @@
       Central Texas Rainfall Totals
     </span>
   </NavBrand>
-  <DarkMode />
+  <NavUl {hidden}>
+    <NavLi>
+      <Button id="facts" class="!p-2" color="primary"
+        ><InformationCircle class="text-gray-400" /></Button
+      >
+      <Popover
+        style="custom"
+        arrow={false}
+        defaultClass="py-3 px-6"
+        class="w-96 bg-gray-50 dark:bg-gray-800"
+        title="Fun facts from the rainfall data"
+        color="white"
+        placement="bottom-end"
+        triggeredBy="#facts"
+        trigger="hover"
+      >
+        <ul class="list-inside list-disc text-sky-600 dark:text-sky-400">
+          <li>It's rained {rainYoY}% this year compared to last year</li>
+          <li>{percentYearComplete}% of the year has elapsed so far</li>
+          <li>{rainMoY}% of the year's rain fell in the last 30 days</li>
+        </ul>
+      </Popover>
+    </NavLi>
+    <NavLi><DarkMode /></NavLi>
+  </NavUl>
 </Navbar>
 
 <main>
@@ -210,7 +266,7 @@
         <Alert border color="yellow" class="text-xl">No rainfall in the past five days 😭</Alert>
       </div>
     {:else}
-      <div class="mx-auto grid h-[60vh] w-[65vw] grid-cols-1 grid-rows-1 pr-[8vw] pt-10">
+      <div class="mx-auto grid h-[45vh] w-[80vw] grid-cols-1 grid-rows-1 pr-[8vw] pt-6">
         <div class="chart-container">
           <Bar {data} {options} />
         </div>
