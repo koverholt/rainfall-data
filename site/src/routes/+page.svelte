@@ -1,16 +1,6 @@
 <script lang="ts">
-  import {
-    Navbar,
-    NavBrand,
-    NavUl,
-    NavLi,
-    Card,
-    DarkMode,
-    Alert,
-    Input,
-    Button,
-    Popover,
-  } from "flowbite-svelte";
+  import { Navbar, NavBrand, NavUl, NavLi, Card, DarkMode } from "flowbite-svelte";
+  import { Alert, Input, Button, Popover } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { Bar } from "svelte-chartjs";
   import { page } from "$app/stores";
@@ -18,11 +8,11 @@
   import { InformationCircle } from "svelte-heros-v2";
 
   Chart.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
-
   Chart.defaults.backgroundColor = "#AAAAAA";
   Chart.defaults.borderColor = "#AAAAAA";
   Chart.defaults.color = "#AAAAAA";
 
+  // Initialize variables
   var data = {};
   var site = "";
   var selected = "";
@@ -52,6 +42,7 @@
   var numDaysInYear = 0;
   var percentYearComplete = 0;
 
+  // Chart options
   let options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -84,6 +75,7 @@
       body: JSON.stringify({ site: input_site }),
     });
 
+    // Rainfall values
     const res = await response.json();
     listOfSites = res.list_of_sites;
     site = res.rainfall_amounts[0]["site"];
@@ -103,6 +95,7 @@
     thisYear = res.rainfall_amounts[0]["This year"];
     lastYear = res.rainfall_amounts[0]["Last year"];
 
+    // Calculated values
     var now = new Date();
     start = new Date(now.getFullYear(), 0, 0);
     diff = now - start + (start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000;
@@ -115,6 +108,7 @@
     rainYoY = Math.round((thisYear / lastYear) * 100);
     rainMoY = Math.round((thisMonth / thisYear) * 100);
 
+    // Chart data
     data = {
       labels: [
         "Last 1 hour",
@@ -160,9 +154,9 @@
   </NavBrand>
   <NavUl {hidden}>
     <NavLi>
-      <Button id="facts" class="!p-2" color="primary"
-        ><InformationCircle class="text-gray-400" /></Button
-      >
+      <Button id="facts" class="!p-2" color="primary">
+        <InformationCircle class="text-gray-400" />
+      </Button>
       <Popover
         style="custom"
         arrow={false}
