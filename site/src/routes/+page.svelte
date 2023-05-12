@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Navbar, NavBrand, NavUl, NavLi, Card, DarkMode } from "flowbite-svelte";
-  import { Alert, Input, Button, Popover } from "flowbite-svelte";
+  import { Alert, Card, Input, Button, Popover } from "flowbite-svelte";
+  import { Navbar, NavBrand, DarkMode, Spinner } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { Bar } from "svelte-chartjs";
   import { page } from "$app/stores";
@@ -202,26 +202,50 @@
     <div class="flex space-x-4 p-2 text-center lg:space-x-0">
       <div class="w-0 grow">
         <Card>
-          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
-            {sinceMidnight} in
-          </h5>
-          <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Today</p>
+          {#if !location}
+            <div class="mx-auto items-center justify-items-center">
+              <div>
+                <Spinner size={16} />
+              </div>
+            </div>
+          {:else}
+            <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
+              {sinceMidnight} in
+            </h5>
+            <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Today</p>
+          {/if}
         </Card>
       </div>
       <div class="w-0 grow">
         <Card>
-          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
-            {fiveDayTotal} in
-          </h5>
-          <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Last 5 days</p>
+          {#if !location}
+            <div class="mx-auto items-center justify-items-center">
+              <div>
+                <Spinner size={16} />
+              </div>
+            </div>
+          {:else}
+            <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
+              {fiveDayTotal} in
+            </h5>
+            <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Last 5 days</p>
+          {/if}
         </Card>
       </div>
       <div class="w-0 grow">
         <Card>
-          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
-            {thisYear} in
-          </h5>
-          <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">This year</p>
+          {#if !location}
+            <div class="mx-auto items-center justify-items-center">
+              <div>
+                <Spinner size={16} />
+              </div>
+            </div>
+          {:else}
+            <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
+              {thisYear} in
+            </h5>
+            <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">This year</p>
+          {/if}
         </Card>
       </div>
     </div>
@@ -229,31 +253,61 @@
     <div class="flex space-x-2 p-2 text-center lg:space-x-0">
       <div class="w-0 grow">
         <Card>
-          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
-            {oneDayAgo} in
-          </h5>
-          <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Yesterday</p>
+          {#if !location}
+            <div class="mx-auto items-center justify-items-center">
+              <div>
+                <Spinner size={16} />
+              </div>
+            </div>
+          {:else}
+            <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
+              {oneDayAgo} in
+            </h5>
+            <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Yesterday</p>
+          {/if}
         </Card>
       </div>
       <div class="w-0 grow">
         <Card>
-          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
-            {thirtyDayTotal} in
-          </h5>
-          <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Last 30 days</p>
+          {#if !location}
+            <div class="mx-auto items-center justify-items-center">
+              <div>
+                <Spinner size={16} />
+              </div>
+            </div>
+          {:else}
+            <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
+              {thirtyDayTotal} in
+            </h5>
+            <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Last 30 days</p>
+          {/if}
         </Card>
       </div>
       <div class="w-0 grow">
         <Card>
-          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
-            {lastYear} in
-          </h5>
-          <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Last year</p>
+          {#if !location}
+            <div class="mx-auto items-center justify-items-center">
+              <div>
+                <Spinner size={16} />
+              </div>
+            </div>
+          {:else}
+            <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
+              {lastYear} in
+            </h5>
+            <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Last year</p>
+          {/if}
         </Card>
       </div>
     </div>
 
-    {#if fiveDayTotal == 0 && location}
+    {#if !location}
+      <div class="mx-auto grid h-[45vh] w-[80vw] grid-cols-1 grid-rows-1 items-center justify-items-center pt-6">
+        <div>
+          <Spinner size={24} />
+        </div>
+      </div>
+    {:else if fiveDayTotal == 0 && location}
       <div class="m-20 min-h-screen min-w-full px-20 py-6">
         <Alert border color="yellow" class="text-xl">No rainfall in the past five days 😭</Alert>
       </div>
