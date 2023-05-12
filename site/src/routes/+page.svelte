@@ -167,7 +167,7 @@
         triggeredBy="#facts"
         trigger="hover"
       >
-        <ul class="list-inside list-disc space-y-1 py-2 text-sky-600 dark:text-sky-400">
+        <ul class="list-inside list-disc space-y-0.5 pb-1 text-sky-600 dark:text-sky-400">
           <li>We are {percentYearComplete}% of the way through the year</li>
           <li>So far, we've had {rainYoY}% of last year's rainfall</li>
           <li>{rainMoY}% of this year's rain fell in the last 30 days</li>
