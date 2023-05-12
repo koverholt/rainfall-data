@@ -160,7 +160,7 @@
         style="custom"
         arrow={false}
         defaultClass="py-3 px-6"
-        class="w-96 bg-gray-50 text-sm dark:bg-gray-800 lg:text-base"
+        class="w-96 bg-gray-50 text-sm dark:bg-gray-800"
         title="Fun facts from the rainfall data"
         color="white"
         placement="bottom-end"
