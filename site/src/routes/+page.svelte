@@ -102,8 +102,7 @@
     oneDay = 1000 * 60 * 60 * 24;
     currentDay = Math.floor(diff / oneDay);
     currentYear = now.getFullYear();
-    numDaysInYear =
-      (currentYear % 4 === 0 && currentYear % 100 > 0) || currentYear % 400 == 0 ? 366 : 365;
+    numDaysInYear = (currentYear % 4 === 0 && currentYear % 100 > 0) || currentYear % 400 == 0 ? 366 : 365;
     percentYearComplete = Math.round((currentDay / numDaysInYear) * 100);
     rainYoY = Math.round((thisYear / lastYear) * 100);
     rainMoY = Math.round((thisMonth / thisYear) * 100);
@@ -146,14 +145,14 @@
   });
 </script>
 
-<Navbar let:hidden let:toggle color="form">
-  <NavBrand href="/">
-    <span class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
+<Navbar color="form" class="py-4">
+  <NavBrand href="#">
+    <span class="self-center whitespace-nowrap pl-4 text-xl font-semibold dark:text-white lg:pl-0 lg:text-2xl">
       Central Texas Rainfall Totals
     </span>
   </NavBrand>
-  <NavUl {hidden}>
-    <NavLi>
+  <div class="flex lg:space-x-0 lg:space-x-2">
+    <div>
       <Button id="facts" class="!p-2" color="primary">
         <InformationCircle class="text-gray-400" />
       </Button>
@@ -174,14 +173,14 @@
           <li>{rainMoY}% of the year's rain fell in the last 30 days</li>
         </ul>
       </Popover>
-    </NavLi>
-    <NavLi><DarkMode /></NavLi>
-  </NavUl>
+    </div>
+    <div><DarkMode /></div>
+  </div>
 </Navbar>
 
 <main>
   <div class="container mx-auto">
-    <div class="align-center placement-center flex p-4 text-xl text-sky-800 dark:text-sky-400">
+    <div class="align-center placement-center flex p-4 text-center text-sm text-sky-800 dark:text-sky-400 lg:text-xl">
       <div class="m-auto mx-1">Showing rainfall from the</div>
       <div class="m-auto mx-1">
         <Input
@@ -189,8 +188,7 @@
           placeholder={location}
           list="sitelist"
           bind:value={selected}
-          on:change={() =>
-            (window.location.href = "https://rainfall.koverholt.com/?site=" + selected)}
+          on:change={() => (window.location.href = "https://rainfall.koverholt.com/?site=" + selected)}
         />
         <datalist id="sitelist" name="sitelist">
           {#each listOfSites as site}
@@ -201,56 +199,56 @@
       <div class="m-auto mx-1">LCRA Hydromet weather gauge</div>
     </div>
 
-    <div class="flex p-2 text-center">
+    <div class="flex space-x-4 p-2 text-center lg:space-x-0">
       <div class="w-0 grow">
         <Card>
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
             {sinceMidnight} in
           </h5>
-          <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Today</p>
+          <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Today</p>
         </Card>
       </div>
       <div class="w-0 grow">
         <Card>
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
             {fiveDayTotal} in
           </h5>
-          <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Last 5 days</p>
+          <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Last 5 days</p>
         </Card>
       </div>
       <div class="w-0 grow">
         <Card>
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
             {thisYear} in
           </h5>
-          <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">This year</p>
+          <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">This year</p>
         </Card>
       </div>
     </div>
 
-    <div class="flex p-2 text-center">
+    <div class="flex space-x-2 p-2 text-center lg:space-x-0">
       <div class="w-0 grow">
         <Card>
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
             {oneDayAgo} in
           </h5>
-          <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Yesterday</p>
+          <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Yesterday</p>
         </Card>
       </div>
       <div class="w-0 grow">
         <Card>
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
             {thirtyDayTotal} in
           </h5>
-          <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Last 30 days</p>
+          <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Last 30 days</p>
         </Card>
       </div>
       <div class="w-0 grow">
         <Card>
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white lg:text-2xl">
             {lastYear} in
           </h5>
-          <p class="font-normal leading-tight text-gray-700 dark:text-gray-400">Last year</p>
+          <p class="text-sm font-normal leading-tight text-gray-700 dark:text-gray-400 lg:text-base">Last year</p>
         </Card>
       </div>
     </div>
