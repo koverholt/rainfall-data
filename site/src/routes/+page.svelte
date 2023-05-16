@@ -196,7 +196,7 @@
           {/each}
         </datalist>
       </div>
-      <div class="m-auto mx-1">LCRA Hydromet weather gauge</div>
+      <div class="m-auto mx-1"><a href="https://hydromet.lcra.org">LCRA Hydromet weather gauge</a></div>
     </div>
 
     <div class="flex space-x-4 p-2 text-center lg:space-x-0">
