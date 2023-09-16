@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Alert, Card, Input, Button, Popover } from "flowbite-svelte";
-  import { Navbar, NavBrand, DarkMode, Spinner } from "flowbite-svelte";
+  import { Navbar, NavBrand, DarkMode } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { Bar } from "svelte-chartjs";
   import { page } from "$app/stores";
@@ -201,8 +201,8 @@
             <div class="mx-auto items-center justify-items-center">
               <div>
                 <div role="status" class="max-w-sm animate-pulse">
-                  <div class="h-8 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                  <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                  <div class="mb-4 h-8 w-16 rounded-full bg-gray-200 dark:bg-gray-700 md:w-48" />
+                  <div class="mb-2.5 h-4 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700" />
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
@@ -221,8 +221,8 @@
             <div class="mx-auto items-center justify-items-center">
               <div>
                 <div role="status" class="max-w-sm animate-pulse">
-                  <div class="h-8 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                  <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                  <div class="mb-4 h-8 w-16 rounded-full bg-gray-200 dark:bg-gray-700 md:w-48" />
+                  <div class="mb-2.5 h-4 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700" />
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
@@ -241,8 +241,8 @@
             <div class="mx-auto items-center justify-items-center">
               <div>
                 <div role="status" class="max-w-sm animate-pulse">
-                  <div class="h-8 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                  <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                  <div class="mb-4 h-8 w-16 rounded-full bg-gray-200 dark:bg-gray-700 md:w-48" />
+                  <div class="mb-2.5 h-4 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700" />
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
@@ -264,8 +264,8 @@
             <div class="mx-auto items-center justify-items-center">
               <div>
                 <div role="status" class="max-w-sm animate-pulse">
-                  <div class="h-8 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                  <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                  <div class="mb-4 h-8 w-16 rounded-full bg-gray-200 dark:bg-gray-700 md:w-48" />
+                  <div class="mb-2.5 h-4 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700" />
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
@@ -284,8 +284,8 @@
             <div class="mx-auto items-center justify-items-center">
               <div>
                 <div role="status" class="max-w-sm animate-pulse">
-                  <div class="h-8 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                  <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                  <div class="mb-4 h-8 w-16 rounded-full bg-gray-200 dark:bg-gray-700 md:w-48" />
+                  <div class="mb-2.5 h-4 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700" />
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
@@ -304,8 +304,8 @@
             <div class="mx-auto items-center justify-items-center">
               <div>
                 <div role="status" class="max-w-sm animate-pulse">
-                  <div class="h-8 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                  <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                  <div class="mb-4 h-8 w-16 rounded-full bg-gray-200 dark:bg-gray-700 md:w-48" />
+                  <div class="mb-2.5 h-4 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700" />
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
@@ -322,26 +322,28 @@
 
     {#if !location}
       <div class="mx-auto grid max-h-[45vh] w-[80vw] grid-cols-1 grid-rows-1 items-center justify-items-center pt-3">
-        <div role="status" class="min-h-[40vh] min-w-[65vw] p-0 border border-gray-200 rounded shadow animate-pulse dark:border-gray-700">
-            <div class="flex h-full items-baseline mt-24 space-x-6 px-8">
-                <div class="w-full bg-gray-200 h-4 dark:bg-gray-700"></div>
-                <div class="w-full bg-gray-200 h-8 dark:bg-gray-700"></div>
-                <div class="w-full bg-gray-200 h-12 dark:bg-gray-700"></div>
-                <div class="w-full bg-gray-200 h-32 dark:bg-gray-700"></div>
-                <div class="w-full bg-gray-200 h-56 dark:bg-gray-700"></div>
-                <div class="w-full bg-gray-200 h-20 dark:bg-gray-700"></div>
-                <div class="w-full bg-gray-200 h-32 dark:bg-gray-700"></div>
-                <div class="w-full bg-gray-200 h-40 dark:bg-gray-700"></div>
-                <div class="w-full bg-gray-200 h-52 dark:bg-gray-700"></div>
-                <div class="w-full bg-gray-200 h-56 dark:bg-gray-700"></div>
-            </div>
-            <span class="sr-only">Loading...</span>
+        <div
+          role="status"
+          class="min-h-[40vh] min-w-[65vw] animate-pulse rounded border border-gray-200 p-0 shadow dark:border-gray-700"
+        >
+          <div class="mt-24 flex h-full items-baseline space-x-6 px-8">
+            <div class="h-4 w-20 w-full bg-gray-200 dark:bg-gray-700" />
+            <div class="h-8 w-20 w-full bg-gray-200 dark:bg-gray-700" />
+            <div class="h-12 w-20 w-full bg-gray-200 dark:bg-gray-700" />
+            <div class="h-32 w-20 w-full bg-gray-200 dark:bg-gray-700" />
+            <div class="h-56 w-20 w-full bg-gray-200 dark:bg-gray-700" />
+            <div class="h-20 w-20 w-full bg-gray-200 dark:bg-gray-700" />
+            <div class="h-32 w-20 w-full bg-gray-200 dark:bg-gray-700" />
+            <div class="h-40 w-20 w-full bg-gray-200 dark:bg-gray-700" />
+            <div class="h-52 w-20 w-full bg-gray-200 dark:bg-gray-700" />
+            <div class="h-56 w-20 w-full bg-gray-200 dark:bg-gray-700" />
+          </div>
+          <span class="sr-only">Loading...</span>
         </div>
-
       </div>
     {:else if fiveDayTotal == 0 && location}
-      <div class="m-20 min-h-screen min-w-full px-20 py-6">
-        <Alert border color="yellow" class="text-xl">No rainfall in the past five days 😭</Alert>
+      <div class="mx-20 px-4 py-6">
+        <Alert border color="yellow" class="p-4 pl-8 text-xl">No rainfall in the past five days 😭</Alert>
       </div>
     {:else}
       <div class="mx-auto grid h-[45vh] w-[80vw] grid-cols-1 grid-rows-1 pr-[8vw] pt-6">
