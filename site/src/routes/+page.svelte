@@ -12,7 +12,6 @@
   Chart.defaults.borderColor = "#AAAAAA";
   Chart.defaults.color = "#AAAAAA";
 
-  // Initialize variables
   var data = {};
   var site = "";
   var selected = "";
@@ -64,18 +63,15 @@
     },
   };
 
-  // Get URL parameters
   const input_site = Number($page.url.searchParams.get("site") ?? "2959");
 
   onMount(async () => {
-    // API request
     const response = await fetch("https://rainfall-data-67ugd5bjtq-uc.a.run.app", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ site: input_site }),
     });
 
-    // Rainfall values
     const res = await response.json();
     listOfSites = res.list_of_sites;
     site = res.rainfall_amounts[0]["site"];
@@ -95,7 +91,6 @@
     thisYear = res.rainfall_amounts[0]["This year"];
     lastYear = res.rainfall_amounts[0]["Last year"];
 
-    // Calculated values
     var now = new Date();
     start = new Date(now.getFullYear(), 0, 0);
     diff = now - start + (start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000;
@@ -205,7 +200,11 @@
           {#if !location}
             <div class="mx-auto items-center justify-items-center">
               <div>
-                <Spinner size={16} />
+                <div role="status" class="max-w-sm animate-pulse">
+                  <div class="h-8 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                  <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                  <span class="sr-only">Loading...</span>
+                </div>
               </div>
             </div>
           {:else}
@@ -221,7 +220,11 @@
           {#if !location}
             <div class="mx-auto items-center justify-items-center">
               <div>
-                <Spinner size={16} />
+                <div role="status" class="max-w-sm animate-pulse">
+                  <div class="h-8 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                  <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                  <span class="sr-only">Loading...</span>
+                </div>
               </div>
             </div>
           {:else}
@@ -237,7 +240,11 @@
           {#if !location}
             <div class="mx-auto items-center justify-items-center">
               <div>
-                <Spinner size={16} />
+                <div role="status" class="max-w-sm animate-pulse">
+                  <div class="h-8 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                  <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                  <span class="sr-only">Loading...</span>
+                </div>
               </div>
             </div>
           {:else}
@@ -256,7 +263,11 @@
           {#if !location}
             <div class="mx-auto items-center justify-items-center">
               <div>
-                <Spinner size={16} />
+                <div role="status" class="max-w-sm animate-pulse">
+                  <div class="h-8 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                  <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                  <span class="sr-only">Loading...</span>
+                </div>
               </div>
             </div>
           {:else}
@@ -272,7 +283,11 @@
           {#if !location}
             <div class="mx-auto items-center justify-items-center">
               <div>
-                <Spinner size={16} />
+                <div role="status" class="max-w-sm animate-pulse">
+                  <div class="h-8 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                  <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                  <span class="sr-only">Loading...</span>
+                </div>
               </div>
             </div>
           {:else}
@@ -288,7 +303,11 @@
           {#if !location}
             <div class="mx-auto items-center justify-items-center">
               <div>
-                <Spinner size={16} />
+                <div role="status" class="max-w-sm animate-pulse">
+                  <div class="h-8 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                  <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                  <span class="sr-only">Loading...</span>
+                </div>
               </div>
             </div>
           {:else}
@@ -302,10 +321,23 @@
     </div>
 
     {#if !location}
-      <div class="mx-auto grid h-[45vh] w-[80vw] grid-cols-1 grid-rows-1 items-center justify-items-center pt-6">
-        <div>
-          <Spinner size={24} />
+      <div class="mx-auto grid max-h-[45vh] w-[80vw] grid-cols-1 grid-rows-1 items-center justify-items-center pt-3">
+        <div role="status" class="min-h-[40vh] min-w-[65vw] p-0 border border-gray-200 rounded shadow animate-pulse dark:border-gray-700">
+            <div class="flex h-full items-baseline mt-24 space-x-6 px-8">
+                <div class="w-full bg-gray-200 h-4 dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 h-8 dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 h-12 dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 h-32 dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 h-56 dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 h-20 dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 h-32 dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 h-40 dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 h-52 dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 h-56 dark:bg-gray-700"></div>
+            </div>
+            <span class="sr-only">Loading...</span>
         </div>
+
       </div>
     {:else if fiveDayTotal == 0 && location}
       <div class="m-20 min-h-screen min-w-full px-20 py-6">
