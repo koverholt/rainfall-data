@@ -76,7 +76,6 @@
     listOfSites = res.list_of_sites;
     site = res.rainfall_amounts[0]["site"];
     location = res.rainfall_amounts[0]["location"];
-    location = "";
     lastOneHour = res.rainfall_amounts[0]["Previous 1 hour"];
     lastThreeHours = res.rainfall_amounts[0]["Previous 3 hours"];
     lastSixHours = res.rainfall_amounts[0]["Previous 6 hours"];
