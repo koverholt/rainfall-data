@@ -76,6 +76,7 @@
     listOfSites = res.list_of_sites;
     site = res.rainfall_amounts[0]["site"];
     location = res.rainfall_amounts[0]["location"];
+    location = "";
     lastOneHour = res.rainfall_amounts[0]["Previous 1 hour"];
     lastThreeHours = res.rainfall_amounts[0]["Previous 3 hours"];
     lastSixHours = res.rainfall_amounts[0]["Previous 6 hours"];
@@ -201,8 +202,8 @@
             <div class="mx-auto items-center justify-items-center">
               <div>
                 <div role="status" class="max-w-sm animate-pulse">
-                  <div class="mb-4 h-8 w-16 rounded-full bg-gray-200 dark:bg-gray-700 md:w-48" />
-                  <div class="mb-2.5 h-4 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700" />
+                  <div class="mb-4 h-4 w-12 rounded-full bg-gray-200 dark:bg-gray-700 md:h-6 md:w-20 md:w-48" />
+                  <div class="mb-2.5 h-3 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700 md:h-4" />
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
@@ -221,8 +222,8 @@
             <div class="mx-auto items-center justify-items-center">
               <div>
                 <div role="status" class="max-w-sm animate-pulse">
-                  <div class="mb-4 h-8 w-16 rounded-full bg-gray-200 dark:bg-gray-700 md:w-48" />
-                  <div class="mb-2.5 h-4 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700" />
+                  <div class="mb-4 h-4 w-12 rounded-full bg-gray-200 dark:bg-gray-700 md:h-6 md:w-20 md:w-48" />
+                  <div class="mb-2.5 h-3 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700 md:h-4" />
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
@@ -241,8 +242,8 @@
             <div class="mx-auto items-center justify-items-center">
               <div>
                 <div role="status" class="max-w-sm animate-pulse">
-                  <div class="mb-4 h-8 w-16 rounded-full bg-gray-200 dark:bg-gray-700 md:w-48" />
-                  <div class="mb-2.5 h-4 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700" />
+                  <div class="mb-4 h-4 w-12 rounded-full bg-gray-200 dark:bg-gray-700 md:h-6 md:w-20 md:w-48" />
+                  <div class="mb-2.5 h-3 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700 md:h-4" />
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
@@ -264,8 +265,8 @@
             <div class="mx-auto items-center justify-items-center">
               <div>
                 <div role="status" class="max-w-sm animate-pulse">
-                  <div class="mb-4 h-8 w-16 rounded-full bg-gray-200 dark:bg-gray-700 md:w-48" />
-                  <div class="mb-2.5 h-4 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700" />
+                  <div class="mb-4 h-4 w-12 rounded-full bg-gray-200 dark:bg-gray-700 md:h-6 md:w-20 md:w-48" />
+                  <div class="mb-2.5 h-3 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700 md:h-4" />
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
@@ -284,8 +285,8 @@
             <div class="mx-auto items-center justify-items-center">
               <div>
                 <div role="status" class="max-w-sm animate-pulse">
-                  <div class="mb-4 h-8 w-16 rounded-full bg-gray-200 dark:bg-gray-700 md:w-48" />
-                  <div class="mb-2.5 h-4 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700" />
+                  <div class="mb-4 h-4 w-12 rounded-full bg-gray-200 dark:bg-gray-700 md:h-6 md:w-20 md:w-48" />
+                  <div class="mb-2.5 h-3 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700 md:h-4" />
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
@@ -304,8 +305,8 @@
             <div class="mx-auto items-center justify-items-center">
               <div>
                 <div role="status" class="max-w-sm animate-pulse">
-                  <div class="mb-4 h-8 w-16 rounded-full bg-gray-200 dark:bg-gray-700 md:w-48" />
-                  <div class="mb-2.5 h-4 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700" />
+                  <div class="mb-4 h-4 w-12 rounded-full bg-gray-200 dark:bg-gray-700 md:h-6 md:w-20 md:w-48" />
+                  <div class="mb-2.5 h-3 max-w-[360px] rounded-full bg-gray-200 dark:bg-gray-700 md:h-4" />
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
@@ -321,22 +322,22 @@
     </div>
 
     {#if !location}
-      <div class="mx-auto grid max-h-[45vh] w-[80vw] grid-cols-1 grid-rows-1 items-center justify-items-center pt-3">
+      <div class="mx-auto grid max-h-[45vh] w-[80vw] grid-cols-1 grid-rows-1 items-center justify-items-center pt-6">
         <div
           role="status"
-          class="min-h-[40vh] min-w-[65vw] animate-pulse rounded border border-gray-200 p-0 shadow dark:border-gray-700"
+          class="min-h-[30vh] min-w-[65vw] animate-pulse rounded border border-gray-200 p-0 shadow dark:border-gray-700 md:min-h-[40vh]"
         >
-          <div class="mt-24 flex h-full items-baseline space-x-6 px-8">
-            <div class="h-4 w-20 w-full bg-gray-200 dark:bg-gray-700" />
-            <div class="h-8 w-20 w-full bg-gray-200 dark:bg-gray-700" />
-            <div class="h-12 w-20 w-full bg-gray-200 dark:bg-gray-700" />
-            <div class="h-32 w-20 w-full bg-gray-200 dark:bg-gray-700" />
-            <div class="h-56 w-20 w-full bg-gray-200 dark:bg-gray-700" />
-            <div class="h-20 w-20 w-full bg-gray-200 dark:bg-gray-700" />
-            <div class="h-32 w-20 w-full bg-gray-200 dark:bg-gray-700" />
-            <div class="h-40 w-20 w-full bg-gray-200 dark:bg-gray-700" />
-            <div class="h-52 w-20 w-full bg-gray-200 dark:bg-gray-700" />
-            <div class="h-56 w-20 w-full bg-gray-200 dark:bg-gray-700" />
+          <div class="mt-10 flex h-full items-baseline space-x-2 px-2 md:mt-24 md:space-x-7 md:px-4">
+            <div class="h-4 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-4 md:w-16" />
+            <div class="h-8 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-8 md:w-16" />
+            <div class="h-12 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-12 md:w-16" />
+            <div class="h-32 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-32 md:w-16" />
+            <div class="h-40 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-40 md:w-16" />
+            <div class="h-20 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-20 md:w-16" />
+            <div class="h-32 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-32 md:w-16" />
+            <div class="h-40 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-40 md:w-16" />
+            <div class="h-52 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-52 md:w-16" />
+            <div class="h-56 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-56 md:w-16" />
           </div>
           <span class="sr-only">Loading...</span>
         </div>
