@@ -321,22 +321,24 @@
     </div>
 
     {#if !location}
-      <div class="mx-auto grid max-h-[45vh] w-[80vw] grid-cols-1 grid-rows-1 items-center justify-items-center pt-6">
+      <div
+        class="mx-auto grid max-h-[45vh] w-[70vw] grid-cols-1 grid-rows-1 items-center justify-items-center pr-[0vw] pt-8 md:pr-[7vw] md:pt-6"
+      >
         <div
           role="status"
-          class="min-h-[30vh] min-w-[65vw] animate-pulse rounded border border-gray-200 p-0 shadow dark:border-gray-700 md:min-h-[40vh]"
+          class="min-h-[30vh] min-w-[60vw] max-w-[60vw] animate-pulse rounded border border-gray-200 p-0 shadow dark:border-gray-700 md:min-h-[40vh]"
         >
-          <div class="mt-10 flex h-full items-baseline space-x-2 px-2 md:mt-24 md:space-x-7 md:px-4">
-            <div class="h-4 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-4 md:w-16" />
-            <div class="h-8 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-8 md:w-16" />
-            <div class="h-12 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-12 md:w-16" />
-            <div class="h-32 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-32 md:w-16" />
-            <div class="h-40 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-40 md:w-16" />
-            <div class="h-20 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-20 md:w-16" />
-            <div class="h-32 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-32 md:w-16" />
-            <div class="h-40 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-40 md:w-16" />
-            <div class="h-52 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-52 md:w-16" />
-            <div class="h-56 w-20 w-full bg-gray-200 dark:bg-gray-700 md:h-56 md:w-16" />
+          <div class="mt-10 flex h-full items-baseline space-x-2 px-2 md:mt-56 md:space-x-10 md:px-4">
+            <div class="h-4 w-6 bg-gray-200 dark:bg-gray-700 md:h-4 md:w-24" />
+            <div class="h-8 w-6 bg-gray-200 dark:bg-gray-700 md:h-8 md:w-24" />
+            <div class="h-12 w-6 bg-gray-200 dark:bg-gray-700 md:h-12 md:w-24" />
+            <div class="h-32 w-6 bg-gray-200 dark:bg-gray-700 md:h-32 md:w-24" />
+            <div class="h-40 w-6 bg-gray-200 dark:bg-gray-700 md:h-40 md:w-24" />
+            <div class="h-20 w-6 bg-gray-200 dark:bg-gray-700 md:h-20 md:w-24" />
+            <div class="h-32 w-6 bg-gray-200 dark:bg-gray-700 md:h-32 md:w-24" />
+            <div class="h-40 w-6 bg-gray-200 dark:bg-gray-700 md:h-40 md:w-24" />
+            <div class="h-52 w-6 bg-gray-200 dark:bg-gray-700 md:h-52 md:w-24" />
+            <div class="h-56 w-6 bg-gray-200 dark:bg-gray-700 md:h-56 md:w-24" />
           </div>
           <span class="sr-only">Loading...</span>
         </div>
@@ -346,7 +348,7 @@
         <Alert border color="yellow" class="p-4 pl-8 text-xl">No rainfall in the past five days 😭</Alert>
       </div>
     {:else}
-      <div class="mx-auto grid h-[45vh] w-[80vw] grid-cols-1 grid-rows-1 pr-[8vw] pt-6">
+      <div class="mx-auto grid h-[45vh] w-[70vw] grid-cols-1 grid-rows-1 pr-[8vw] pt-6">
         <div class="chart-container">
           <Bar {data} {options} />
         </div>
