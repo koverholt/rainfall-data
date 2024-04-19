@@ -1,6 +1,17 @@
 import json
 import ssl
 import pandas as pd
+from fastapi import FastAPI, Request, Response
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 
 def get_rainfall_totals(site):
@@ -104,23 +115,9 @@ def get_rainfall_totals(site):
     return df, df_sites
 
 
-def apply(request):
-    if request.method == "OPTIONS":
-        headers = {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET",
-            "Access-Control-Allow-Headers": "Content-Type",
-            "Access-Control-Max-Age": "3600",
-        }
-        return ("", 204, headers)
-
-    headers = {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST",
-        "Access-Control-Allow-Headers": "Content-Type",
-    }
-
-    request_json = request.get_json(silent=True)
+@app.post("/")
+async def get_rainfall_amounts(request: Request):
+    request_json = await request.json()
     site = request_json.get("site", 2959)
     rainfall_totals = get_rainfall_totals(site)
     rainfall_amounts = rainfall_totals[0].to_dict(orient="records")
@@ -131,4 +128,4 @@ def apply(request):
         "list_of_sites": list_of_sites,
     }
 
-    return (json.dumps(result), 200, headers)
+    return result
