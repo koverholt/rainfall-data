@@ -47,19 +47,19 @@ export function RainfallChart({ data, loading }: RainfallChartProps) {
         <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
           <XAxis
             dataKey="label"
-            tick={{ fill: '#9CA3AF', fontSize: 11 }}
+            tick={{ fill: '#374151', fontSize: 12, fontWeight: 500 }}
             interval={0}
           />
           <YAxis
-            tick={{ fill: '#9CA3AF' }}
+            tick={{ fill: '#374151', fontSize: 12, fontWeight: 500 }}
             tickCount={7}
             domain={[0, 'auto']}
             label={{
               value: 'Rainfall Amount (in)',
               angle: -90,
               position: 'insideLeft',
-              fill: '#9CA3AF',
-              style: { textAnchor: 'middle' },
+              fill: '#374151',
+              style: { textAnchor: 'middle', fontSize: 13, fontWeight: 500 },
             }}
           />
           <Tooltip
