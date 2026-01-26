@@ -41,7 +41,7 @@ function App() {
     <div className="min-h-screen bg-white dark:bg-gray-800">
       <Header data={data} />
 
-      <main className="mx-auto w-[70vw] py-4">
+      <main className="mx-auto w-[92vw] py-4 sm:w-[85vw] lg:w-[70vw]">
         <SiteSelector
           currentLocation={data?.location ?? 'Loading...'}
           sites={listOfSites}
