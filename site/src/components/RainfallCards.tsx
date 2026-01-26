@@ -34,18 +34,39 @@ function ChartIcon() {
   );
 }
 
+const COLUMN_COLORS = {
+  // Most recent - 20% tint (draws eye first)
+  daily: {
+    text: 'text-sky-600',
+    border: 'border-l-4 border-l-sky-600',
+    bg: 'bg-sky-100/20 dark:bg-sky-900/20',
+  },
+  // Medium term - 40% tint
+  period: {
+    text: 'text-sky-500',
+    border: 'border-l-4 border-l-sky-500',
+    bg: 'bg-sky-100/40 dark:bg-sky-900/40',
+  },
+  // Long term - 60% tint (recedes)
+  annual: {
+    text: 'text-sky-400',
+    border: 'border-l-4 border-l-sky-400',
+    bg: 'bg-sky-100/60 dark:bg-sky-900/60',
+  },
+} as const;
+
 interface CardProps {
   value: number;
   label: string;
   icon: ReactNode;
-  color: string;
+  colors: typeof COLUMN_COLORS[keyof typeof COLUMN_COLORS];
   className?: string;
 }
 
-function Card({ value, label, icon, color, className = '' }: CardProps) {
+function Card({ value, label, icon, colors, className = '' }: CardProps) {
   return (
-    <div className={`flex-1 rounded-lg border border-gray-200 bg-white p-3 shadow dark:border-gray-700 dark:bg-gray-800 sm:p-4 ${className}`}>
-      <div className={`mb-2 flex items-center justify-center gap-2 ${color}`}>
+    <div className={`flex-1 rounded-lg border border-gray-200 p-3 shadow sm:p-4 ${colors.border} ${colors.bg} ${className}`}>
+      <div className={`mb-2 flex items-center justify-center gap-2 ${colors.text}`}>
         {icon}
         <span className="text-lg font-bold tracking-tight text-gray-900 dark:text-white sm:text-xl lg:text-2xl">
           {value} in
@@ -83,42 +104,42 @@ export function RainfallCards({ data, loading }: RainfallCardsProps) {
         value={data['Since midnight']}
         label="Today"
         icon={<DropletIcon />}
-        color="text-sky-500"
+        colors={COLUMN_COLORS.daily}
         className="order-1 sm:order-1"
       />
       <Card
         value={data['1 day ago']}
         label="Yesterday"
         icon={<DropletIcon />}
-        color="text-sky-500"
+        colors={COLUMN_COLORS.daily}
         className="order-2 sm:order-4"
       />
       <Card
         value={data['5 day total']}
         label="Last 5 days"
         icon={<ClockIcon />}
-        color="text-sky-500"
+        colors={COLUMN_COLORS.period}
         className="order-3 sm:order-2"
       />
       <Card
         value={data['30 day total']}
         label="Last 30 days"
         icon={<ChartIcon />}
-        color="text-sky-500"
+        colors={COLUMN_COLORS.period}
         className="order-4 sm:order-5"
       />
       <Card
         value={data['This year']}
         label="This year"
         icon={<CalendarIcon />}
-        color="text-emerald-500"
+        colors={COLUMN_COLORS.annual}
         className="order-5 sm:order-3"
       />
       <Card
         value={data['Last year']}
         label="Last year"
         icon={<CalendarIcon />}
-        color="text-amber-500"
+        colors={COLUMN_COLORS.annual}
         className="order-6 sm:order-6"
       />
     </div>

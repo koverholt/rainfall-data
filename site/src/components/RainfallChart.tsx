@@ -1,6 +1,7 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { ChartSkeleton } from './LoadingSkeleton';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { useDarkMode } from '../hooks/useDarkMode';
 import type { RainfallData } from '../types';
 
 interface RainfallChartProps {
@@ -10,6 +11,8 @@ interface RainfallChartProps {
 
 export function RainfallChart({ data, loading }: RainfallChartProps) {
   const isMobile = useIsMobile();
+  const isDark = useDarkMode();
+  const axisColor = isDark ? '#9CA3AF' : '#374151';
 
   if (loading) {
     return <ChartSkeleton />;
@@ -70,14 +73,14 @@ export function RainfallChart({ data, loading }: RainfallChartProps) {
         >
           <XAxis
             dataKey="label"
-            tick={{ fill: '#374151', fontSize: isMobile ? 10 : 12, fontWeight: 500 }}
+            tick={{ fill: axisColor, fontSize: isMobile ? 10 : 12, fontWeight: 500 }}
             interval={0}
             angle={isMobile ? -45 : 0}
             textAnchor={isMobile ? 'end' : 'middle'}
             height={isMobile ? 50 : 30}
           />
           <YAxis
-            tick={{ fill: '#374151', fontSize: isMobile ? 11 : 12, fontWeight: 500 }}
+            tick={{ fill: axisColor, fontSize: isMobile ? 11 : 12, fontWeight: 500 }}
             tickCount={6}
             domain={[0, 'auto']}
             width={isMobile ? 40 : 50}
@@ -85,7 +88,7 @@ export function RainfallChart({ data, loading }: RainfallChartProps) {
               value: 'Rainfall (in)',
               angle: -90,
               position: 'insideLeft',
-              fill: '#374151',
+              fill: axisColor,
               style: { textAnchor: 'middle', fontSize: isMobile ? 11 : 13, fontWeight: 500 },
             }}
           />
