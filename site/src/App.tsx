@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { SiteSelector } from './components/SiteSelector';
 import { RainfallCards } from './components/RainfallCards';
-import { RainfallChart } from './components/RainfallChart';
+import { StackedTimeline } from './components/StackedTimeline';
 import { useRainfallData } from './hooks/useRainfallData';
 
 function getSiteFromUrl(): number {
@@ -50,7 +50,10 @@ function App() {
 
         <RainfallCards data={data} loading={loading} />
 
-        <RainfallChart data={data} loading={loading} />
+        {/* Stacked Timeline */}
+        <div className="mt-4 px-2">
+          <StackedTimeline data={data} loading={loading} />
+        </div>
       </main>
     </div>
   );
