@@ -43,7 +43,7 @@ function TimelineBar({ label, mobileLabel, value, maxValue, isDark, isTotal, isT
     : getIntensityClass(value, maxValue, isDark);
 
   return (
-    <div className="group relative flex-1 min-w-0">
+    <div className="group relative flex-1 min-w-0 flex flex-col">
       {/* Label - show mobile version on small screens */}
       <div className={`mb-1 text-center text-xs font-semibold sm:mb-2 sm:text-base ${isToday ? 'text-sky-600 dark:text-sky-400' : 'text-gray-700 dark:text-gray-200'}`}>
         <span className="sm:hidden">{mobileLabel || label}</span>
@@ -51,7 +51,7 @@ function TimelineBar({ label, mobileLabel, value, maxValue, isDark, isTotal, isT
       </div>
 
       {/* Bar container */}
-      <div className={`relative w-full rounded-lg h-16 sm:h-24 ${isDark ? 'bg-gray-700' : 'bg-gray-100'}`}>
+      <div className={`relative w-full rounded-lg flex-1 min-h-8 ${isDark ? 'bg-gray-700' : 'bg-gray-100'}`}>
         {/* Filled bar (grows from bottom) */}
         <div
           className={`absolute bottom-0 left-0 right-0 rounded-lg transition-all duration-300 ${intensityClass} ${isTotal ? 'border-2 border-sky-600 dark:border-sky-400' : ''}`}
@@ -129,18 +129,18 @@ export function StackedTimeline({ data, loading }: StackedTimelineProps) {
   const hourlyMax = Math.max(data['Previous 24 hours'], data['Since midnight'], 0.1);
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow dark:border-gray-700 dark:bg-gray-800">
+    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow dark:border-gray-700 dark:bg-gray-800 h-full flex flex-col">
       {/* Header */}
-      <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+      <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
         Rainfall Timeline
       </h3>
 
       {/* Main 5-day timeline */}
-      <div className="mb-6">
+      <div className="mb-3 flex-1 min-h-0 flex flex-col">
         <div className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-400 dark:text-gray-500">
           Daily Totals
         </div>
-        <div className="flex gap-1 sm:gap-2">
+        <div className="flex flex-1 min-h-0 gap-1 sm:gap-2">
           {days.map((day, index) => (
             <TimelineBar
               key={index}
@@ -157,11 +157,11 @@ export function StackedTimeline({ data, loading }: StackedTimelineProps) {
       </div>
 
       {/* Hourly detail */}
-      <div>
+      <div className="flex-1 min-h-0 flex flex-col">
         <div className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-400 dark:text-gray-500">
           Hourly Totals
         </div>
-        <div className="flex gap-1 sm:gap-2">
+        <div className="flex flex-1 min-h-0 gap-1 sm:gap-2">
           {todayDetail.map((period, index) => (
             <TimelineBar
               key={index}
