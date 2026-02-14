@@ -12,6 +12,7 @@ export function SiteSelector({ currentLocation, sites, onSiteChange }: SiteSelec
     const siteId = parseInt(value, 10);
     if (!isNaN(siteId)) {
       onSiteChange(siteId);
+      e.target.value = '';
     }
   };
 
