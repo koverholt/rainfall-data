@@ -19,7 +19,7 @@ function getSiteFromUrl(): number {
 
 function App() {
   const [siteId, setSiteId] = useState<number>(getSiteFromUrl);
-  const { data, listOfSites, loading } = useRainfallData(siteId);
+  const { data, listOfSites, loading, error } = useRainfallData(siteId);
 
   // Handle browser back/forward navigation
   useEffect(() => {
@@ -43,17 +43,26 @@ function App() {
 
       <main className="mx-auto w-[92vw] flex-1 flex flex-col min-h-0 py-2 sm:w-[85vw] lg:w-[85vw]">
         <SiteSelector
-          currentLocation={data?.location ?? 'Loading...'}
+          currentLocation={data?.location ?? (error ? 'Unavailable' : 'Loading...')}
           sites={listOfSites}
           onSiteChange={handleSiteChange}
         />
 
-        <RainfallCards data={data} loading={loading} />
+        {error && !loading ? (
+          <div className="m-4 rounded-lg border border-amber-300 bg-amber-50 p-6 text-center text-amber-900 dark:border-amber-700 dark:bg-amber-900/20 dark:text-amber-200">
+            <p className="text-lg font-semibold">Unable to load rainfall gauge data</p>
+            <p className="mt-1 text-sm opacity-80">{error}</p>
+          </div>
+        ) : (
+          <>
+            <RainfallCards data={data} loading={loading} />
 
-        {/* Stacked Timeline */}
-        <div className="mt-2 px-2 pb-3 flex-1 min-h-0 flex flex-col">
-          <StackedTimeline data={data} loading={loading} />
-        </div>
+            {/* Stacked Timeline */}
+            <div className="mt-2 px-2 pb-3 flex-1 min-h-0 flex flex-col">
+              <StackedTimeline data={data} loading={loading} />
+            </div>
+          </>
+        )}
       </main>
     </div>
   );

@@ -28,8 +28,3 @@ export interface ApiResponse {
   rainfall_amounts: RainfallData[];
   list_of_sites: Site[];
 }
-
-export interface ChartDataPoint {
-  label: string;
-  value: number;
-}

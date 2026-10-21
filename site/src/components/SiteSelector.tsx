@@ -8,10 +8,19 @@ interface SiteSelectorProps {
 
 export function SiteSelector({ currentLocation, sites, onSiteChange }: SiteSelectorProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    const siteId = parseInt(value, 10);
-    if (!isNaN(siteId)) {
-      onSiteChange(siteId);
+    const raw = e.target.value.trim();
+    if (!raw) return;
+
+    const matchedById = /^\d+$/.test(raw)
+      ? sites.find((s) => s.site === parseInt(raw, 10))
+      : undefined;
+    const matchedByName = !matchedById
+      ? sites.find((s) => s.location.toLowerCase() === raw.toLowerCase())
+      : undefined;
+    const matched = matchedById ?? matchedByName;
+
+    if (matched) {
+      onSiteChange(matched.site);
       e.target.value = '';
     }
   };
@@ -29,7 +38,7 @@ export function SiteSelector({ currentLocation, sites, onSiteChange }: SiteSelec
         />
         <datalist id="sitelist">
           {sites.map((site) => (
-            <option key={site.site} value={site.site} label={site.location} />
+            <option key={`${site.site}-${site.location}`} value={site.site} label={site.location} />
           ))}
         </datalist>
       </div>

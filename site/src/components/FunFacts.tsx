@@ -31,10 +31,10 @@ export function FunFacts({ data }: FunFactsProps) {
 
   const thisYear = data['This year'] ?? 0;
   const lastYear = data['Last year'] ?? 0;
-  const thisMonth = data['This month'] ?? 0;
+  const last30Days = data['30 day total'] ?? 0;
 
   const rainYoY = lastYear > 0 ? Math.round((thisYear / lastYear) * 100) : 0;
-  const rainMoY = thisYear > 0 ? Math.round((thisMonth / thisYear) * 100) : 0;
+  const rain30DayShare = thisYear > 0 ? Math.min(100, Math.round((last30Days / thisYear) * 100)) : 0;
 
   return (
     <div className="relative">
@@ -64,7 +64,7 @@ export function FunFacts({ data }: FunFactsProps) {
               <p className="mt-0.5 text-sm text-slate-400">of last year's rainfall so far</p>
             </div>
             <div className="px-4 py-3">
-              <span className="text-2xl font-bold text-sky-400">{rainMoY}%</span>
+              <span className="text-2xl font-bold text-sky-400">{rain30DayShare}%</span>
               <p className="mt-0.5 text-sm text-slate-400">of this year's rain fell in the last 30 days</p>
             </div>
           </div>
